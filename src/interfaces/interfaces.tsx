@@ -14,14 +14,24 @@ export interface IBarber {
     email: string
     phone: string
     role: Roles
+    schedule: string[]
     createdAt: string
     updatedAt: string
 }
+
+export interface IScheduleCreate {
+    sub: number
+    date: Date
+    startTime: string
+    endTime: string
+}
+
 export interface ICreateBarber {
     name: string
     email: string
     phone: string
     password: string
+    schedule: string[]
 }
 
 export interface ProviderProps {
@@ -40,5 +50,7 @@ export interface UserProviders {
     login: (userData: any) => void
     logout: () => void
     getAllBarbers: () => void
+    modal: boolean
+    setModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 

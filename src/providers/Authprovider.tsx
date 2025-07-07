@@ -12,6 +12,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
     const [user, setUser] = useState<IBarber | null>(null)
     const [allBarbers, setAllBarbers] = useState<IBarber[] | null>(null)
     const [barber, setBarber] = useState<IBarber[] | null>([])
+    const [modal, setModal] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const getAllBarbers = async () => {
@@ -34,6 +35,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
             const decoded = jwtDecode<IBarber>(data.token)
             localStorage.setItem("@Token", data.token)
             localStorage.setItem("@UserInfo", JSON.stringify(decoded))
+            console.log(user)
             setUser(decoded)
 
             if (decoded.role === "BARBER") {
@@ -73,10 +75,9 @@ export const UserProvider = ({ children }: ProviderProps) => {
         }
         loadUser()
     }, [])
-    console.log(user)
 
     return (
-        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, }}>
+        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal}}>
             {children}
         </UserContext.Provider>
     )
