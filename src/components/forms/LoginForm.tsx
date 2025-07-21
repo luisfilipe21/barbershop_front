@@ -9,7 +9,6 @@ export const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const { login } = useContext(UserContext)
-
     return (
         <form onSubmit={handleSubmit(login)}>
             <div className="py-4">

@@ -20,7 +20,7 @@ export interface IBarber {
 }
 
 export interface IScheduleCreate {
-    sub: number
+    id: number
     date: Date
     startTime: string
     endTime: string

@@ -11,9 +11,17 @@ export const Header = () => {
             <nav className="flex items-center gap-4 ">
                 <div className="rounded-full">
                     <h1 className="text-secondary font-bold text-xl py-1 px-3">
-                        <Link to="/dashboard">
-                            {user?.name[0].toLocaleUpperCase()}
-                        </Link>
+                        {user?.role === "BARBER" ?
+
+                            <Link to="/barber/dashboard">
+                                {user?.name[0].toLocaleUpperCase()}
+                            </Link>
+                            :
+
+                            <Link to="/user">
+                                {user?.name[0].toLocaleUpperCase()}
+                            </Link>
+                        }
                     </h1>
 
                 </div>

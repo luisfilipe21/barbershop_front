@@ -3,33 +3,44 @@ import { Inputs } from "../inputs"
 import { UserContext } from "../../providers/Authprovider"
 import { useForm } from "react-hook-form"
 import { api } from "../../service/api"
-import type { IScheduleCreate } from "../../interfaces/interfaces"
+import type {  IScheduleCreate } from "../../interfaces/interfaces"
 
 export const ScheduleModal = () => {
 
-    const { modal, setModal, user } = useContext(UserContext)
+    const { modal, setModal, user, setUser } = useContext(UserContext)
     const { register, handleSubmit } = useForm<IScheduleCreate>()
+
 
     const closeModal = () => {
         setModal(false)
     }
 
-    // Parei aqui
-    // FAZER AGORA: 
-    // 1- ARRUMAR A QUESTÃO DA INSERÇÃO DOS HORÁRIOS NO BACK
-
+   
     const createSchedule = async (payload: IScheduleCreate) => {
-        console.log(payload)
-        try {
-            const barberId = user!.id
-            console.log(await api.post(`${barberId}/schedule`, { id: barberId, date: payload.date, startTime: payload.startTime, endTime: payload.endTime }))
-            console.log("deu bom")
-            return await api.post(`${barberId}/schedule`, { id: barberId, date: payload.date, startTime: payload.startTime, endTime: payload.endTime })
+        const token = localStorage.getItem("@Token")
+        const barber = user?.sub
 
+
+        if (!barber) {
+            console.log("sem user")
+            return
+        }
+
+        if (!token) {
+            console.log("sem token")
+            return
+        }
+
+        try {
+            const teste = await api.post(`/users/schedule/${barber}`, { id: barber, date: payload.date, startTime: payload.startTime, endTime: payload.endTime }, { headers: { Authorization: `Bearer ${token}` } })
+
+            return teste
         } catch (error) {
             console.log("error")
             console.log(error)
         }
+
+        // setModal(false)
 
     }
 

@@ -1,71 +1,35 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { UserContext } from "../../providers/Authprovider"
 import { ScheduleModal } from "../../components/modal/scheduleModal"
+import { api } from "../../service/api"
 
 export const BarberDashboard = () => {
 
-    const [cancelingAppointmentId, setCancelingAppointmentId] = useState<number | null>(null)
-    const [isCanceling, setIsCanceling] = useState(false)
+    const { user, setModal, setUser } = useContext(UserContext)
 
-    const pastAppointments = [
-        {
-            id: 3,
-            barber: "David Thompson",
-            service: "Haircut & Beard Trim",
-            date: "April 30, 2024",
-            time: "11:00 AM",
-            location: "Westside Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-        {
-            id: 4,
-            barber: "William Davis",
-            service: "Haircut",
-            date: "April 15, 2024",
-            time: "9:30 AM",
-            location: "Downtown Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-        {
-            id: 5,
-            barber: "Robert Johnson",
-            service: "Fade & Design",
-            date: "March 28, 2024",
-            time: "3:30 PM",
-            location: "Main Street Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-    ]
-    const handleCancelAppointment = () => {
-        if (!cancelingAppointmentId) return
-
-        setIsCanceling(true)
-
-        // Simulate cancellation process
-        setTimeout(() => {
-            setIsCanceling(false)
-            setCancelingAppointmentId(null)
-            // In a real app, you would update the appointments list here
-        }, 1500)
-    }
-
-    // -----------------------------------------
-    const { user, setModal } = useContext(UserContext)
     const openModal = () => {
         setModal(true)
     }
 
-    const getDay = (appointment: string) => {
-        const year = new Date(appointment).getFullYear()
-        const month = new Date(appointment).getMonth().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
-        const day = new Date(appointment).getDay().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
+    useEffect(() => {
+        const getSchedule = async () => {
+            const token = localStorage.getItem("@Token")
+            try {
+                const { data } = await api.get(`/users/schedule/${user!.id}`, { headers: { Authorization: `Bearer ${token}` } })
 
-        const fullDate = `${day}/${month}/${year}`
-        return fullDate
-    }
+                setUser({ ...user!, schedule: data })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        const refreshSchedule = setInterval(() => getSchedule(), 5000)
+
+        return () => { clearInterval(refreshSchedule) }
+
+    }, [user!.id])
 
     const getTime = (appointment: string) => {
         const hours = new Date(appointment).getHours().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
@@ -74,11 +38,18 @@ export const BarberDashboard = () => {
         return fullTime
     }
 
+    const fullDate = (appointment: string) => {
+        const util = appointment.split("T")
+        const [ano, mes, dia] = util[0].split("-")
+        const date = `${dia}/${mes}/${ano}`
+        return date
+    }
+
     return (
         <>
 
-            <ScheduleModal />
             <div className="flex min-h-screen flex-col m-auto">
+                <ScheduleModal />
 
                 <Header />
 
@@ -132,13 +103,11 @@ export const BarberDashboard = () => {
 
                                     <div>
                                         <div >
-
-
                                             <div className="mt-6">
                                                 {user!.schedule.length > 0 ? (
                                                     <div className="space-y-4 flex flex-wrap gap-4">
-                                                        {user!.schedule.map((appointment) => (
-                                                            <div key={Number(appointment.id)} className="rounded-lg border p-4">
+                                                        {user!.schedule.map((appointment,index) => (
+                                                            <div key={index} className="rounded-lg border p-4">
                                                                 <div className="flex items-start gap-4">
                                                                     <div className="flex-1">
                                                                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -147,7 +116,7 @@ export const BarberDashboard = () => {
                                                                         <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
                                                                             <div className="flex items-center gap-1">
                                                                                 {/* <CalendarDays className="h-4 w-4 text-muted-foreground" /> */}
-                                                                                {appointment.date ? <p>{getDay(appointment.date)}</p> : null}
+                                                                                {appointment.date ? <p>{fullDate(appointment.date)}</p> : null}
                                                                             </div>
 
                                                                             <div className="flex items-center gap-1">
@@ -164,10 +133,6 @@ export const BarberDashboard = () => {
                                                                                 {/* <MapPin className="h-4 w-4 text-muted-foreground" /> */}
                                                                                 <span>{appointment.isAvailable}Agenda aberta</span>
                                                                             </div>
-                                                                            {/* <div className="flex items-center gap-1 sm:col-span-2">
-                                                                                <MapPin className="h-4 w-4 text-muted-foreground" />
-                                                                                <span>{appointment.location}</span>
-                                                                            </div> */}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -176,13 +141,15 @@ export const BarberDashboard = () => {
                                                     </div>
                                                 ) : (
                                                     <div className="py-8 text-center">
-                                                        <p className="text-muted-foreground">You have no upcoming appointments.</p>
+                                                        <p className="text-muted-foreground">Sua agenda está livre.</p>
                                                         <Link to="/barbers">
-                                                            <button className="mt-4">Book an Appointment</button>
+                                                            <button className="mt-4">Abra seu horário de atendimento</button>
                                                         </Link>
                                                     </div>
                                                 )}
                                             </div>
+                                            
+
 
                                             {/* <div className="mt-6">
                                                 {pastAppointments.length > 0 ? (

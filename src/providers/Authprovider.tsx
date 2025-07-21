@@ -35,9 +35,8 @@ export const UserProvider = ({ children }: ProviderProps) => {
             const decoded = jwtDecode<IBarber>(data.token)
             localStorage.setItem("@Token", data.token)
             localStorage.setItem("@UserInfo", JSON.stringify(decoded))
-            console.log(user)
-            setUser(decoded)
 
+            setUser({ ...decoded , id: decoded.sub})
             if (decoded.role === "BARBER") {
                 navigate("/barber/dashboard")
             } else {
