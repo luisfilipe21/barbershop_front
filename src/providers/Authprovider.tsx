@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import type { IBarber, ILoginData, ProviderProps, UserProviders } from "../interfaces/interfaces";
+import type { IBarber, ILoginData, IScheduleCreate, ProviderProps, UserProviders } from "../interfaces/interfaces";
 import { api } from "../service/api";
 import { jwtDecode } from "jwt-decode"
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,24 @@ export const UserProvider = ({ children }: ProviderProps) => {
         }
     }
 
+    const getOneBarberSchedule = async (id: number): Promise<IScheduleCreate[] | undefined> => {
+        console.log(id)
+        try {
+            const { data } = await api.get(`/users/schedule/${id}`)
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error) 
+        }
+    }
+    const getBarberById = async (id: number): Promise<IBarber> => {
+        try {
+            const { data } = await api.get(`/users/${id}`)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const login = async (payload: ILoginData) => {
         try {
@@ -36,7 +54,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
             localStorage.setItem("@Token", data.token)
             localStorage.setItem("@UserInfo", JSON.stringify(decoded))
 
-            setUser({ ...decoded , id: decoded.sub})
+            setUser({ ...decoded, id: decoded.sub })
             if (decoded.role === "BARBER") {
                 navigate("/barber/dashboard")
             } else {
@@ -76,7 +94,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal}}>
+        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal, getBarberById, getOneBarberSchedule }}>
             {children}
         </UserContext.Provider>
     )

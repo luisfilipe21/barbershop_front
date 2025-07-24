@@ -3,7 +3,7 @@ import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { UserContext } from "../../providers/Authprovider"
 import { Link } from "react-router-dom"
-import { Barbers } from "../../components/barbers"
+import { BarbersComponent } from "../../components/barbers"
 
 export const Home = () => {
     const { barber, getAllBarbers, user } = useContext(UserContext)
@@ -94,8 +94,7 @@ export const Home = () => {
                     <section className="bg-muted/40 py-10">
                         <div className="container">
                             <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Barbeiros</h2>
-                            <Barbers />
-
+                            <BarbersComponent />
                         </div>
                     </section>
 

@@ -14,7 +14,7 @@ export interface IBarber {
     email: string
     phone: string
     role: Roles
-    schedule: string[]
+    schedule: IScheduleCreate[]
     createdAt: string
     updatedAt: string
 }
@@ -52,5 +52,7 @@ export interface UserProviders {
     getAllBarbers: () => void
     modal: boolean
     setModal: React.Dispatch<React.SetStateAction<boolean>>
+    getBarberById: (id: number) => IBarber | null
+    getOneBarberSchedule: (id: number) => IScheduleCreate[] | null
 }
 

@@ -1,10 +1,18 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/Authprovider"
+import type { IBarber } from "../../interfaces/interfaces"
 
-export const Barbers = () => {
-    const {barber} = useContext(UserContext)
-    
+export const BarbersComponent = () => {
+    const { barber } = useContext(UserContext)
+    const navigate = useNavigate();
+
+    const handleBarber = (barber: IBarber) => {
+        navigate(`/user/schedule/${barber.id}`)
+        console.log(barber)
+    }
+
+
     return (
         <>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -23,11 +31,10 @@ export const Barbers = () => {
                         <div className="p-4">
                             <h3 className="font-bold">{barber.name}</h3>
                             <p className="text-sm text-muted-foreground">{barber.phone}</p>
-                            <Link to={`/barbers/${index + 1}`}>
-                                <button className="btn mt-4 w-full">
-                                    Ver perfil
-                                </button>
-                            </Link>
+                            <button className="btn mt-4 w-full" onClick={() => handleBarber(barber)}>
+                                Ver perfil
+                            </button>
+
                         </div>
                     </div>
                 ))}

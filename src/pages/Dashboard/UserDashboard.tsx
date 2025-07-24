@@ -30,35 +30,7 @@ export const UserDashboard = () => {
         },
     ]
 
-    const pastAppointments = [
-        {
-            id: 3,
-            barber: "David Thompson",
-            service: "Haircut & Beard Trim",
-            date: "April 30, 2024",
-            time: "11:00 AM",
-            location: "Westside Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-        {
-            id: 4,
-            barber: "William Davis",
-            service: "Haircut",
-            date: "April 15, 2024",
-            time: "9:30 AM",
-            location: "Downtown Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-        {
-            id: 5,
-            barber: "Robert Johnson",
-            service: "Fade & Design",
-            date: "March 28, 2024",
-            time: "3:30 PM",
-            location: "Main Street Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-    ]
+
     const handleCancelAppointment = () => {
         if (!cancelingAppointmentId) return
 
@@ -73,7 +45,7 @@ export const UserDashboard = () => {
     }
 
     // -----------------------------------------
-    const {user} = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     return (
         <div className="flex min-h-screen flex-col m-auto">
@@ -84,7 +56,7 @@ export const UserDashboard = () => {
                     <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <h1 className="text-3xl font-bold">Agenda</h1>
-                            <p className="text-muted-foreground">Controle seus agendamentos</p>
+                            <p className="text-muted-foreground">Seus agendamentos</p>
                         </div>
                         <Link to="/schedule">
                             <button className="mt-4 sm:mt-0 btn">Gerenciar horários</button>
@@ -95,33 +67,17 @@ export const UserDashboard = () => {
                         <div className="space-y-8">
                             <div>
                                 <div>
-                                    <h1>Perfil</h1>
-                                    <p>Informações pessoais</p>
-                                </div>
-                                <div>
                                     <div className="flex items-center gap-4">
-                                        <div className="rounded-full bg-muted p-2">
-                                            {/* <User className="h-6 w-6" /> */}
-
+                                        <div className="rounded-full bg-red-400 p-2">
+                                            <h1 className="px-2">{user?.name[0]}</h1>
                                         </div>
                                         <div>
                                             <p className="font-medium">{user?.name}</p>
                                             <p className="text-sm text-muted-foreground">{user?.email}</p>
                                         </div>
                                     </div>
-                                    <div className="mt-6 space-y-4">
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2">
-                                                <span className="text-sm">Informações </span>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2">
-                                                <span className="text-sm">Endereço da Barbearia:</span>                                                
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
+
                                 <div className="mt-4">
                                     <button className="w-full btn">
                                         Edit Profile
@@ -129,20 +85,16 @@ export const UserDashboard = () => {
                                 </div>
                             </div>
                         </div>
-                            
+
 
                         <div>
                             <div>
                                 <div>
-                                    <h1>Meus Horários</h1>
+                                    <h1>Meus Agendamentos</h1>
                                 </div>
 
                                 <div>
                                     <div >
-                                        <div className="grid w-full grid-cols-2">
-                                            <p>Próximos</p>
-                                            <p>Passados</p>
-                                        </div>
 
                                         <div className="mt-6">
                                             {upcomingAppointments.length > 0 ? (
@@ -150,15 +102,14 @@ export const UserDashboard = () => {
                                                     {upcomingAppointments.map((appointment) => (
                                                         <div key={appointment.id} className="rounded-lg border p-4">
                                                             <div className="flex items-start gap-4">
-                                                                <img
+                                                                {/* <img
                                                                     src={appointment.image || "/placeholder.svg"}
                                                                     alt={appointment.barber}
                                                                     className="h-16 w-16 rounded-full object-cover"
-                                                                />
+                                                                /> */}
                                                                 <div className="flex-1">
                                                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                                                                         <h3 className="font-medium">{appointment.barber}</h3>
-                                                                        <p className="text-sm font-medium text-primary">{appointment.service}</p>
                                                                     </div>
                                                                     <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
                                                                         <div className="flex items-center gap-1">
@@ -174,20 +125,23 @@ export const UserDashboard = () => {
                                                                             <span>{appointment.location}</span>
                                                                         </div>
                                                                     </div>
+
                                                                     <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-                                                                        <button className="sm:flex-1">
-                                                                            Reschedule
+                                                                        <button className="sm:flex-1 btn">
+                                                                            Remarcar Horário
                                                                         </button>
+
                                                                         <div>
                                                                             <div >
                                                                                 <button
-                                                                                    className="text-destructive hover:text-destructive sm:flex-1"
+                                                                                    className="text-destructive hover:text-destructive sm:flex-1 btn"
                                                                                     onClick={() => setCancelingAppointmentId(appointment.id)}
                                                                                 >
-                                                                                    Cancel
+                                                                                    Cancelar
                                                                                 </button>
                                                                             </div>
-
+                                                                            {/* Isso pode ser um modal que abre quando clica no botão de cancelar */}
+                                                                            {/* 
                                                                             <div>
                                                                                 <div>
                                                                                     <h1>Cancel Appointment</h1>
@@ -207,7 +161,7 @@ export const UserDashboard = () => {
                                                                                         {isCanceling ? "Canceling..." : "Yes, Cancel"}
                                                                                     </button>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> */}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -217,15 +171,15 @@ export const UserDashboard = () => {
                                                 </div>
                                             ) : (
                                                 <div className="py-8 text-center">
-                                                    <p className="text-muted-foreground">You have no upcoming appointments.</p>
+                                                    <p className="text-muted-foreground">Você não tem horários marcados.</p>
                                                     <Link to="/barbers">
-                                                        <button className="mt-4">Book an Appointment</button>
+                                                        <button className="mt-4">Marcar um horário</button>
                                                     </Link>
                                                 </div>
                                             )}
                                         </div>
 
-                                        <div className="mt-6">
+                                        {/* <div className="mt-6">
                                             {pastAppointments.length > 0 ? (
                                                 <div className="space-y-4">
                                                     {pastAppointments.map((appointment) => (
@@ -243,15 +197,15 @@ export const UserDashboard = () => {
                                                                     </div>
                                                                     <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
                                                                         <div className="flex items-center gap-1">
-                                                                            {/* <CalendarDays className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <CalendarDays className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.date}</span>
                                                                         </div>
                                                                         <div className="flex items-center gap-1">
-                                                                            {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <Clock className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.time}</span>
                                                                         </div>
                                                                         <div className="flex items-center gap-1 sm:col-span-2">
-                                                                            {/* <MapPin className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <MapPin className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.location}</span>
                                                                         </div>
                                                                     </div>
@@ -273,7 +227,7 @@ export const UserDashboard = () => {
                                                     <p className="text-muted-foreground">You have no past appointments.</p>
                                                 </div>
                                             )}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
