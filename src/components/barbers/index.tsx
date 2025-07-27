@@ -1,15 +1,14 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/Authprovider"
-import type { IBarber } from "../../interfaces/interfaces"
+import type { IReturnBarber } from "../../interfaces/interfaces"
 
 export const BarbersComponent = () => {
     const { barber } = useContext(UserContext)
     const navigate = useNavigate();
 
-    const handleBarber = (barber: IBarber) => {
+    const handleBarber = (barber: IReturnBarber) => {
         navigate(`/user/schedule/${barber.id}`)
-        console.log(barber)
     }
 
 

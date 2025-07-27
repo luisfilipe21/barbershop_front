@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import type { IBarber, ILoginData, IScheduleCreate, ProviderProps, UserProviders } from "../interfaces/interfaces";
+import type { IBarber, ILoginData, IReturnBarber, IScheduleCreate, ProviderProps, UserProviders } from "../interfaces/interfaces";
 import { api } from "../service/api";
 import { jwtDecode } from "jwt-decode"
 import { useNavigate } from "react-router-dom";
@@ -9,16 +9,16 @@ export const UserContext = createContext<UserProviders>({} as UserProviders)
 
 export const UserProvider = ({ children }: ProviderProps) => {
     const [token, setToken] = useState<string>("")
-    const [user, setUser] = useState<IBarber | null>(null)
-    const [allBarbers, setAllBarbers] = useState<IBarber[] | null>(null)
-    const [barber, setBarber] = useState<IBarber[] | null>([])
+    const [user, setUser] = useState<IReturnBarber | null>(null)
+    const [allBarbers, setAllBarbers] = useState<IReturnBarber[] | null>(null)
+    const [barber, setBarber] = useState<IReturnBarber[] | null>([])
     const [modal, setModal] = useState<boolean>(false)
     const navigate = useNavigate()
 
-    const getAllBarbers = async () => {
+    const getAllBarbers = async (): Promise<IReturnBarber[] | void> => {
         try {
             const { data } = await api.get("/users")
-            data.filter((barbers: IBarber) => {
+            data.filter((barbers: IReturnBarber) => {
                 if (barbers.role === "BARBER") {
                     setBarber((allBarber) => allBarber ? [...allBarber, barbers] : [barbers])
                 }
@@ -29,16 +29,15 @@ export const UserProvider = ({ children }: ProviderProps) => {
     }
 
     const getOneBarberSchedule = async (id: number): Promise<IScheduleCreate[] | undefined> => {
-        console.log(id)
         try {
             const { data } = await api.get(`/users/schedule/${id}`)
             console.log(data)
-            return data
+            return data as IScheduleCreate[]
         } catch (error) {
             console.log(error) 
         }
     }
-    const getBarberById = async (id: number): Promise<IBarber> => {
+    const getBarberById = async (id: number): Promise<IReturnBarber | undefined>  => {
         try {
             const { data } = await api.get(`/users/${id}`)
             return data

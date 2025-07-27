@@ -19,7 +19,7 @@ export const BarberDashboard = () => {
             const token = localStorage.getItem("@Token")
             try {
                 const { data } = await api.get(`/users/schedule/${user!.id}`, { headers: { Authorization: `Bearer ${token}` } })
-
+                console.log(data)
                 setUser({ ...user!, schedule: data })
             } catch (error) {
                 console.log(error)

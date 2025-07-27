@@ -31,7 +31,15 @@ export interface ICreateBarber {
     email: string
     phone: string
     password: string
-    schedule: string[]
+    schedule: IScheduleCreate[]
+}
+export interface IReturnBarber {
+    id: number
+    name: string
+    email: string
+    role: Roles
+    phone: string
+    Schedule: IScheduleCreate[]
 }
 
 export interface ProviderProps {
@@ -41,18 +49,18 @@ export interface ProviderProps {
 export interface UserProviders {
     token: string | undefined
     setToken: (value: string) => void
-    user: IBarber | null
-    setUser: (value: IBarber | null) => void
-    allBarbers: IBarber[] | null
+    user: IReturnBarber | null
+    setUser: (value: IReturnBarber | null) => void
+    allBarbers: IReturnBarber[] | null
     setAllBarbers: (value: IBarber[] | null) => void
-    barber: IBarber[] | null
-    setBarber: (value: IBarber[] | null) => void
+    barber: IReturnBarber[] | null
+    setBarber: (value: IReturnBarber[] | null) => void
     login: (userData: any) => void
     logout: () => void
     getAllBarbers: () => void
     modal: boolean
     setModal: React.Dispatch<React.SetStateAction<boolean>>
-    getBarberById: (id: number) => IBarber | null
-    getOneBarberSchedule: (id: number) => IScheduleCreate[] | null
+    getBarberById: (id: number) => Promise<IReturnBarber | undefined>
+    getOneBarberSchedule: (id: number) => Promise<IScheduleCreate[] | undefined>
 }
 
