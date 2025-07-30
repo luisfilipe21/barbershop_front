@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
         try {
             const { data } = await api.get(`/users/schedule/${id}`)
             console.log(data)
-            return data as IScheduleCreate[]
+            return data 
         } catch (error) {
             console.log(error) 
         }

@@ -14,15 +14,27 @@ export const BarberSchedule = () => {
     useEffect(() => {
         const fetchOneBarber = async () => {
             const oneBarberData = await getBarberById(Number(id!))
-            console.log(oneBarberData)
-
+            
             setOneBarber(oneBarberData)
         }
         fetchOneBarber()
-
     }, [id, getBarberById])
 
     if (!oneBarber) return <h1>Loading</h1>
+
+      const getTime = (appointment: string) => {
+        const hours = new Date(appointment).getHours().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
+        const minutes = new Date(appointment).getMinutes().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
+        const fullTime = `${hours}:${minutes}`
+        return fullTime
+    }
+
+    const fullDate = (appointment: Date) => {
+        const util = appointment.split("T")
+        const [ano, mes, dia] = util[0].split("-")
+        const date = `${dia}/${mes}/${ano}`
+        return date
+    }
 
 
     return (
@@ -85,13 +97,13 @@ export const BarberSchedule = () => {
                                                 <div>
                                                     <p className="text-sm font-medium">Data</p>
                                                     <p className="text-sm text-muted-foreground">
-                                                        {data.date}
+                                                        {fullDate(data.date)}
                                                     </p>
                                                 </div>
                                                 <div>
                                                     <p className="text-sm font-medium">Horário</p>
                                                     <p className="text-sm text-muted-foreground">
-                                                        {data.startTime}
+                                                        {getTime(data.startTime)}
                                                     </p>
                                                 </div>
                                             </div>

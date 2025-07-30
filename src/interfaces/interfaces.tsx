@@ -52,7 +52,7 @@ export interface UserProviders {
     user: IReturnBarber | null
     setUser: (value: IReturnBarber | null) => void
     allBarbers: IReturnBarber[] | null
-    setAllBarbers: (value: IBarber[] | null) => void
+    setAllBarbers: (value: IReturnBarber[] | null) => void
     barber: IReturnBarber[] | null
     setBarber: (value: IReturnBarber[] | null) => void
     login: (userData: any) => void
