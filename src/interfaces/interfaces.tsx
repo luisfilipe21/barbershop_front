@@ -61,6 +61,6 @@ export interface UserProviders {
     modal: boolean
     setModal: React.Dispatch<React.SetStateAction<boolean>>
     getBarberById: (id: number) => Promise<IReturnBarber | undefined>
-    getOneBarberSchedule: (id: number) => Promise<IScheduleCreate[] | undefined>
+    getOneBarberSchedule: (id: number) => Promise<IReturnBarber | undefined>
 }
 

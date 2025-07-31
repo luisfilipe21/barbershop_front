@@ -7,22 +7,20 @@ import { Footer } from "../../components/Footer"
 
 export const BarberSchedule = () => {
     const { id } = useParams()
-    const { getBarberById, user } = useContext(UserContext)
+    const { getBarberById, getOneBarberSchedule } = useContext(UserContext)
 
     const [oneBarber, setOneBarber] = useState<IReturnBarber>()
 
     useEffect(() => {
         const fetchOneBarber = async () => {
-            const oneBarberData = await getBarberById(Number(id!))
-            
-            setOneBarber(oneBarberData)
+            setOneBarber(await getOneBarberSchedule(Number(id!)))
         }
         fetchOneBarber()
     }, [id, getBarberById])
 
     if (!oneBarber) return <h1>Loading</h1>
 
-      const getTime = (appointment: string) => {
+    const getTime = (appointment: string) => {
         const hours = new Date(appointment).getHours().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
         const minutes = new Date(appointment).getMinutes().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
         const fullTime = `${hours}:${minutes}`
@@ -36,45 +34,34 @@ export const BarberSchedule = () => {
         return date
     }
 
-
     return (
         <>
             <Header />
-            <section>
-                <div className="">
-                    <h1>{user!.name}</h1>
-                    <h1>{user!.email}</h1>
-                    <h1>{user!.phone}</h1>
-                </div>
-                <div className="bg-red-700 w-full">
-                    <h1>{oneBarber!.name}</h1>
-                    <h1>{oneBarber!.email}</h1>
-                    <h1>{oneBarber!.phone}</h1>
-                    {/* <h1>{oneBarber!.schedule}</h1> */}
-                </div>
-
-            </section>
-
-
-
             <main className="flex-1 py-10 m-auto">
+               
                 <div className="container">
 
-                    <div className="p-6">
-
-                        <h2 className="text-xl font-bold">Marque seu horário</h2>
-                        <p className="text-muted-foreground">Selecione quando quer ser atendido</p>
-                    </div>
                     <div className="flex flex-wrap justify-center w-full ">
 
-                        {/* <div>
-                        <div>
-                            <div className="aspect-square overflow-hidden bg-red-700">
+                        <div className="w-full px-8">
+                           
+                            {/* espaço para listar qual o nome da barbearia e endereço 
+                            <div className="w-1/3">
+                                <div className="aspect-square overflow-hidden bg-red-700">
+                                    <div className="">
+                                        <h1>{user!.name}</h1>
+                                        <h1>{user!.email}</h1>
+                                        <h1>{user!.phone}</h1>
+                                    </div>
 
+                                </div>
+                            </div> */}
+                            <div className="py-4">
 
+                                <h2 className="text-xl font-bold">Marque seu horário</h2>
+                                <p className="text-muted-foreground">Selecione quando quer ser atendido</p>
                             </div>
                         </div>
-                    </div> */}
 
                         {oneBarber?.Schedule.map((data) => (
 

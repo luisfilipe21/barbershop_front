@@ -28,9 +28,9 @@ export const UserProvider = ({ children }: ProviderProps) => {
         }
     }
 
-    const getOneBarberSchedule = async (id: number): Promise<IScheduleCreate[] | undefined> => {
+    const getOneBarberSchedule = async (id: number): Promise<IReturnBarber | undefined> => {
         try {
-            const { data } = await api.get(`/users/schedule/${id}`)
+            const { data } = await api.get(`/users/schedule/client/${id}`)
             console.log(data)
             return data 
         } catch (error) {
