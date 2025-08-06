@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import type { IBarber, ILoginData, IReturnBarber, IScheduleCreate, ProviderProps, UserProviders } from "../interfaces/interfaces";
+import type { IBarber, ILoginData, IReturnBarber, ProviderProps, UserProviders } from "../interfaces/interfaces";
 import { api } from "../service/api";
 import { jwtDecode } from "jwt-decode"
 import { useNavigate } from "react-router-dom";
@@ -31,13 +31,12 @@ export const UserProvider = ({ children }: ProviderProps) => {
     const getOneBarberSchedule = async (id: number): Promise<IReturnBarber | undefined> => {
         try {
             const { data } = await api.get(`/users/schedule/client/${id}`)
-            console.log(data)
-            return data 
+            return data
         } catch (error) {
-            console.log(error) 
+            console.log(error)
         }
     }
-    const getBarberById = async (id: number): Promise<IReturnBarber | undefined>  => {
+    const getBarberById = async (id: number): Promise<IReturnBarber | undefined> => {
         try {
             const { data } = await api.get(`/users/${id}`)
             return data

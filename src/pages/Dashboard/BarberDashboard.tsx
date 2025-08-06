@@ -19,8 +19,7 @@ export const BarberDashboard = () => {
             const token = localStorage.getItem("@Token")
             try {
                 const { data } = await api.get(`/users/schedule/${user!.id}`, { headers: { Authorization: `Bearer ${token}` } })
-                console.log(data)
-                setUser({ ...user!, schedule: data })
+                setUser({ ...user!, Schedule: data })
             } catch (error) {
                 console.log(error)
             }
@@ -30,7 +29,6 @@ export const BarberDashboard = () => {
         return () => { clearInterval(refreshSchedule) }
 
     }, [user!.id])
-
     const getTime = (appointment: string) => {
         const hours = new Date(appointment).getHours().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
         const minutes = new Date(appointment).getMinutes().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
@@ -104,9 +102,9 @@ export const BarberDashboard = () => {
                                     <div>
                                         <div >
                                             <div className="mt-6">
-                                                {user!.schedule.length > 0 ? (
+                                                {user!.Schedule.length > 0 ? (
                                                     <div className="space-y-4 flex flex-wrap gap-4">
-                                                        {user!.schedule.map((appointment,index) => (
+                                                        {user!.Schedule.map((appointment,index) => (
                                                             <div key={index} className="rounded-lg border p-4">
                                                                 <div className="flex items-start gap-4">
                                                                     <div className="flex-1">

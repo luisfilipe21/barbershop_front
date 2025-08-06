@@ -14,7 +14,7 @@ export interface IBarber {
     email: string
     phone: string
     role: Roles
-    schedule: IScheduleCreate[]
+    Schedule: IScheduleCreate[]
     createdAt: string
     updatedAt: string
 }
@@ -31,7 +31,7 @@ export interface ICreateBarber {
     email: string
     phone: string
     password: string
-    schedule: IScheduleCreate[]
+    Schedule: IScheduleCreate[]
 }
 export interface IReturnBarber {
     id: number

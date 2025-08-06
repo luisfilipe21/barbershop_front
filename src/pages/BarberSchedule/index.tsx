@@ -28,7 +28,8 @@ export const BarberSchedule = () => {
     }
 
     const fullDate = (appointment: Date) => {
-        const util = appointment.split("T")
+         const dateString = appointment.toLocaleString("pt-BR")
+        const util = dateString.split("T")
         const [ano, mes, dia] = util[0].split("-")
         const date = `${dia}/${mes}/${ano}`
         return date
