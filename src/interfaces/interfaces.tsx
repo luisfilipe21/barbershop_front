@@ -30,6 +30,7 @@ export interface ICreateBarber {
     name: string
     email: string
     phone: string
+    role?: Roles
     password: string
     Schedule: IScheduleCreate[]
 }

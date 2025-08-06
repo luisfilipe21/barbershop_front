@@ -7,6 +7,9 @@ export const Footer = () => {
                     <a href="#" className="text-sm text-muted-foreground hover:underline">
                         Contact Us
                     </a>
+                    <a href="/registerBarber" className="text-sm text-muted-foreground hover:underline">
+                        Seja um Barbeiro Parceiro
+                    </a>
                 </nav>
             </div>
         </footer>

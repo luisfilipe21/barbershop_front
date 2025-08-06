@@ -8,6 +8,7 @@ import { BarberDashboard } from "../pages/Dashboard/BarberDashboard"
 import { PrivateUserRoutes } from "./PublicUserRoutes"
 import { UserDashboard } from "../pages/Dashboard/UserDashboard"
 import { BarberSchedule } from "../pages/BarberSchedule"
+import { RegisterBarber } from "../pages/RegisterBarber"
 export const RoutesMain = () => {
 
     return (
@@ -15,6 +16,7 @@ export const RoutesMain = () => {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/registerBarber" element={<RegisterBarber />} />
             <Route path="/login" element={<Login />} />
 
             <Route path="/user" element={<PrivateUserRoutes />} >

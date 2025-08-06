@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../providers/Authprovider"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import type { IReturnBarber } from "../../interfaces/interfaces"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+import logo from "../../../public/logo.png"
 
 export const BarberSchedule = () => {
     const { id } = useParams()
@@ -28,24 +29,43 @@ export const BarberSchedule = () => {
     }
 
     const fullDate = (appointment: Date) => {
-         const dateString = appointment.toLocaleString("pt-BR")
+        const dateString = appointment.toLocaleString("pt-BR")
         const util = dateString.split("T")
         const [ano, mes, dia] = util[0].split("-")
         const date = `${dia}/${mes}/${ano}`
         return date
     }
 
+    const noTimeAvailable = () => {
+        return (
+            <div className="w-full m-auto">
+                <div className="flex flex-col items-center justify-center py-4">
+                    <figure>
+                        <img src={logo} alt="Logo" width={300} color="#ffffff" />
+                    </figure>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-5 py-4 m-auto w-full">
+                    <h1 className="text-xl font-bold">
+                        Parece que esse barbeiro não abriu sua agenda ou todos seus horários foram reenchidos.
+                    </h1>
+                    <p className="text-3xl font-bold">Que tal escolher outro barbeiro?</p>
+                    <Link to="/" className="btn">Clique aqui e escolha outro barbeiro</Link>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <>
             <Header />
-            <main className="flex-1 py-10 m-auto">
-               
-                <div className="container">
+            <main className="flex-1 py-10">
 
-                    <div className="flex flex-wrap justify-center w-full ">
+                <div className="container m-auto">
+
+                    <div className="flex flex-wrap justify-center w-full">
 
                         <div className="w-full px-8">
-                           
+
                             {/* espaço para listar qual o nome da barbearia e endereço 
                             <div className="w-1/3">
                                 <div className="aspect-square overflow-hidden bg-red-700">
@@ -63,7 +83,7 @@ export const BarberSchedule = () => {
                                 <p className="text-muted-foreground">Selecione quando quer ser atendido</p>
                             </div>
                         </div>
-
+                        {oneBarber?.Schedule.length <= 0 ? (<> {noTimeAvailable()}</>) : null}
                         {oneBarber?.Schedule.map((data) => (
 
                             <div key={data.id} className="flex flex-wrap justify-center w-60">
