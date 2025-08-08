@@ -5,7 +5,7 @@ import { Footer } from "../../components/Footer"
 import { UserContext } from "../../providers/Authprovider"
 import { ScheduleModal } from "../../components/modal/scheduleModal"
 import { api } from "../../service/api"
-
+import { ToastContainer } from 'react-toastify';
 export const BarberDashboard = () => {
 
     const { user, setModal, setUser } = useContext(UserContext)
@@ -48,7 +48,7 @@ export const BarberDashboard = () => {
 
             <div className="flex min-h-screen flex-col m-auto">
                 <ScheduleModal />
-
+                <ToastContainer />
                 <Header />
 
                 <main className="flex-1 py-10 m-auto">
@@ -104,7 +104,7 @@ export const BarberDashboard = () => {
                                             <div className="mt-6">
                                                 {user!.Schedule.length > 0 ? (
                                                     <div className="space-y-4 flex flex-wrap gap-4">
-                                                        {user!.Schedule.map((appointment,index) => (
+                                                        {user!.Schedule.map((appointment, index) => (
                                                             <div key={index} className="rounded-lg border p-4">
                                                                 <div className="flex items-start gap-4">
                                                                     <div className="flex-1">
@@ -146,7 +146,7 @@ export const BarberDashboard = () => {
                                                     </div>
                                                 )}
                                             </div>
-                                            
+
 
 
                                             {/* <div className="mt-6">

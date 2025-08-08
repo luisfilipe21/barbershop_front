@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import type { IReturnBarber } from "../../interfaces/interfaces"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
-import logo from "../../../public/logo.png"
+import logo from "../../utils/logo.png"
 
 export const BarberSchedule = () => {
     const { id } = useParams()

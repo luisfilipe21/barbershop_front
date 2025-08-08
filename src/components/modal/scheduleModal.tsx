@@ -3,11 +3,12 @@ import { Inputs } from "../inputs"
 import { UserContext } from "../../providers/Authprovider"
 import { useForm } from "react-hook-form"
 import { api } from "../../service/api"
-import type {  IScheduleCreate } from "../../interfaces/interfaces"
+import type { IScheduleCreate } from "../../interfaces/interfaces"
+import { toast } from 'react-toastify';
 
 export const ScheduleModal = () => {
 
-    const { modal, setModal, user, setUser } = useContext(UserContext)
+    const { modal, setModal, user } = useContext(UserContext)
     const { register, handleSubmit } = useForm<IScheduleCreate>()
 
 
@@ -15,20 +16,25 @@ export const ScheduleModal = () => {
         setModal(false)
     }
 
-   
+
     const createSchedule = async (payload: IScheduleCreate) => {
         const token = localStorage.getItem("@Token")
         const barber = user?.sub
 
 
         if (!barber) {
-            console.log("sem user")
-            return
+            const notify = () => {
+                toast.error("Barbeiro nao encontrado")
+            }
+            
+            return notify()
         }
 
         if (!token) {
-            console.log("sem token")
-            return
+            const notify = () => {
+                toast.error("Token nao encontrado")
+            }
+            return notify()
         }
 
         try {
@@ -36,12 +42,18 @@ export const ScheduleModal = () => {
 
             return teste
         } catch (error) {
-            console.log("error")
-            console.log(error)
+            const notify = () => {
+                toast.error(error.message)
+                console.log("error")
+                console.log(error.message)
+            }
+            return notify()
         }
-
+        const notifySuccess = () => {
+            toast.success("Horário criado com sucesso")
+        }
+        notifySuccess()
         // setModal(false)
-
     }
 
     return (
