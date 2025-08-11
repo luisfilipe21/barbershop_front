@@ -3,6 +3,7 @@ import type { IBarber, ILoginData, IReturnBarber, ProviderProps, UserProviders }
 import { api } from "../service/api";
 import { jwtDecode } from "jwt-decode"
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export const UserContext = createContext<UserProviders>({} as UserProviders)
@@ -55,12 +56,15 @@ export const UserProvider = ({ children }: ProviderProps) => {
 
             setUser({ ...decoded, id: decoded.sub })
             if (decoded.role === "BARBER") {
+                toast.success("Login efetuado com sucesso")
                 navigate("/barber/dashboard")
             } else {
+                toast.success("Login efetuado com sucesso")
                 navigate("/user")
             }
 
         } catch (error) {
+            toast.error("Email ou senha incorretos")
             console.log(error)
         }
     }
@@ -71,6 +75,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
             localStorage.removeItem("@UserInfo")
             navigate("/")
             setUser(null)
+            toast.success("Logout efetuado com sucesso")
         }, 500)
     }
 

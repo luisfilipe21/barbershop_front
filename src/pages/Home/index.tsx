@@ -4,6 +4,7 @@ import { Header } from "../../components/Header"
 import { UserContext } from "../../providers/Authprovider"
 import { Link } from "react-router-dom"
 import { BarbersComponent } from "../../components/barbers"
+import { ToastContainer } from "react-toastify"
 
 export const Home = () => {
     const { barber, getAllBarbers, user } = useContext(UserContext)
@@ -19,6 +20,7 @@ export const Home = () => {
         <>
             <div className="flex min-h-screen flex-col ">
                 <Header />
+                <ToastContainer/>
                 <main className="flex-1 m-auto">
                     {!user ?
                         <section className="bg-muted/40 py-20 md:py-32">

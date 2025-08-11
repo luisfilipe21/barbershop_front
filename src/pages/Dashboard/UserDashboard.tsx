@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { UserContext } from "../../providers/Authprovider"
+import { ToastContainer } from "react-toastify"
 
 export const UserDashboard = () => {
 
@@ -50,7 +51,7 @@ export const UserDashboard = () => {
     return (
         <div className="flex min-h-screen flex-col m-auto">
             <Header />
-
+            <ToastContainer />
             <main className="flex-1 py-10 m-auto">
                 <div className="container">
                     <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
