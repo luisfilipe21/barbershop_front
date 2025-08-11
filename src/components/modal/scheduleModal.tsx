@@ -41,7 +41,7 @@ export const ScheduleModal = () => {
             const teste = await api.post(`/users/schedule/${barber}`, { id: barber, date: payload.date, startTime: payload.startTime, endTime: payload.endTime }, { headers: { Authorization: `Bearer ${token}` } })
 
             return teste
-        } catch (error) {
+        } catch (error: Error | any) {
             const notify = () => {
                 toast.error(error.message)
                 console.log("error")

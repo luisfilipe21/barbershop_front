@@ -29,8 +29,9 @@ export const UserProvider = ({ children }: ProviderProps) => {
     }
 
     const getOneBarberSchedule = async (id: number): Promise<IReturnBarber | undefined> => {
+        const barberToken = localStorage.getItem("@Token")
         try {
-            const { data } = await api.get(`/users/schedule/client/${id}`)
+            const { data } = await api.get(`/users/schedule/client/${id}`, { headers: { Authorization: `Bearer ${barberToken}` } })
             return data
         } catch (error) {
             console.log(error)
