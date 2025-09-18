@@ -60,9 +60,9 @@ export const Header = () => {
                                 </ul>
                             </nav>
 
-                            <div className="min-sm:hidden">
+                            <div className="sm:hidden">
                                 <span className="cursor-pointer">
-                                    <AiOutlineShop onClick={openMenu} className="text-3xl absolute top-[-1rem] right-[-2rem]" />
+                                    <AiOutlineShop onClick={openMenu} className="text-3xl" />
                                 </span>
                             </div>
                         </>

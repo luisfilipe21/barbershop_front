@@ -53,10 +53,6 @@ export const UserProvider = ({ children }: ProviderProps) => {
         }
     }
 
-    // const getAllScheduleTimesByClient = async (barberId: number) => {
-        
-    // }
-
     const login = async (payload: ILoginData) => {
         try {
             const { data } = await api.post("/login", payload)

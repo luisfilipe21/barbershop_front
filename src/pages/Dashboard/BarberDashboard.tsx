@@ -1,7 +1,5 @@
 import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import { UserContext } from "../../providers/Authprovider"
 import { ScheduleModal } from "../../components/modal/scheduleModal"
 import { api } from "../../service/api"
