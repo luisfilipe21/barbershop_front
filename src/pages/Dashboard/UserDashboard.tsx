@@ -1,59 +1,28 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import { UserContext } from "../../providers/Authprovider"
 import { ToastContainer } from "react-toastify"
+import { api } from "../../service/api"
 
 export const UserDashboard = () => {
 
-    const [cancelingAppointmentId, setCancelingAppointmentId] = useState<number | null>(null)
-    const [isCanceling, setIsCanceling] = useState(false)
-
-    const upcomingAppointments = [
-        {
-            id: 1,
-            barber: "James Wilson",
-            service: "Haircut & Style",
-            date: "May 15, 2024",
-            time: "10:30 AM",
-            location: "Main Street Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-        {
-            id: 2,
-            barber: "Michael Rodriguez",
-            service: "Beard Trim",
-            date: "May 22, 2024",
-            time: "2:00 PM",
-            location: "Downtown Location",
-            image: "/placeholder.svg?height=100&width=100",
-        },
-    ]
-
-
-    const handleCancelAppointment = () => {
-        if (!cancelingAppointmentId) return
-
-        setIsCanceling(true)
-
-        // Simulate cancellation process
-        setTimeout(() => {
-            setIsCanceling(false)
-            setCancelingAppointmentId(null)
-            // In a real app, you would update the appointments list here
-        }, 1500)
-    }
-
-    // -----------------------------------------
     const { user } = useContext(UserContext)
 
+    useEffect(() => {
+        try {
+            const data = api.get(`/users/schedule/clientTimeSlot/${user!.id}`)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [user])
+
     return (
-        <div className="flex min-h-screen flex-col m-auto">
-            <Header />
+        <>
+
             <ToastContainer />
-            <main className="flex-1 py-10 m-auto">
-                <div className="container">
+            <section className="flex min-h-screen flex-col m-auto">
+                <div className="">
                     <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <h1 className="text-3xl font-bold">Agenda</h1>
@@ -97,32 +66,32 @@ export const UserDashboard = () => {
                                 <div>
                                     <div >
 
-                                        <div className="mt-6">
+                                        {/* <div className="mt-6">
                                             {upcomingAppointments.length > 0 ? (
                                                 <div className="space-y-4">
                                                     {upcomingAppointments.map((appointment) => (
                                                         <div key={appointment.id} className="rounded-lg border p-4">
                                                             <div className="flex items-start gap-4">
-                                                                {/* <img
+                                                                <img
                                                                     src={appointment.image || "/placeholder.svg"}
                                                                     alt={appointment.barber}
                                                                     className="h-16 w-16 rounded-full object-cover"
-                                                                /> */}
+                                                                />
                                                                 <div className="flex-1">
                                                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                                                                         <h3 className="font-medium">{appointment.barber}</h3>
                                                                     </div>
                                                                     <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
                                                                         <div className="flex items-center gap-1">
-                                                                            {/* <CalendarDays className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <CalendarDays className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.date}</span>
                                                                         </div>
                                                                         <div className="flex items-center gap-1">
-                                                                            {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <Clock className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.time}</span>
                                                                         </div>
                                                                         <div className="flex items-center gap-1 sm:col-span-2">
-                                                                            {/* <MapPin className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            <MapPin className="h-4 w-4 text-muted-foreground" />
                                                                             <span>{appointment.location}</span>
                                                                         </div>
                                                                     </div>
@@ -141,8 +110,8 @@ export const UserDashboard = () => {
                                                                                     Cancelar
                                                                                 </button>
                                                                             </div>
-                                                                            {/* Isso pode ser um modal que abre quando clica no botão de cancelar */}
-                                                                            {/* 
+                                                                            Isso pode ser um modal que abre quando clica no botão de cancelar
+                                                                            
                                                                             <div>
                                                                                 <div>
                                                                                     <h1>Cancel Appointment</h1>
@@ -162,7 +131,7 @@ export const UserDashboard = () => {
                                                                                         {isCanceling ? "Canceling..." : "Yes, Cancel"}
                                                                                     </button>
                                                                                 </div>
-                                                                            </div> */}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -178,56 +147,6 @@ export const UserDashboard = () => {
                                                     </Link>
                                                 </div>
                                             )}
-                                        </div>
-
-                                        {/* <div className="mt-6">
-                                            {pastAppointments.length > 0 ? (
-                                                <div className="space-y-4">
-                                                    {pastAppointments.map((appointment) => (
-                                                        <div key={appointment.id} className="rounded-lg border p-4">
-                                                            <div className="flex items-start gap-4">
-                                                                <img
-                                                                    src={appointment.image || "/placeholder.svg"}
-                                                                    alt={appointment.barber}
-                                                                    className="h-16 w-16 rounded-full object-cover"
-                                                                />
-                                                                <div className="flex-1">
-                                                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                                                        <h3 className="font-medium">{appointment.barber}</h3>
-                                                                        <p className="text-sm font-medium text-primary">{appointment.service}</p>
-                                                                    </div>
-                                                                    <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
-                                                                        <div className="flex items-center gap-1">
-                                                                            <CalendarDays className="h-4 w-4 text-muted-foreground" />
-                                                                            <span>{appointment.date}</span>
-                                                                        </div>
-                                                                        <div className="flex items-center gap-1">
-                                                                            <Clock className="h-4 w-4 text-muted-foreground" />
-                                                                            <span>{appointment.time}</span>
-                                                                        </div>
-                                                                        <div className="flex items-center gap-1 sm:col-span-2">
-                                                                            <MapPin className="h-4 w-4 text-muted-foreground" />
-                                                                            <span>{appointment.location}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="mt-4 flex gap-2">
-                                                                        <button className="flex-1 btn">
-                                                                            Book Similar
-                                                                        </button>
-                                                                        <button className="flex-1 btn">
-                                                                            Leave Review
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ) : (
-                                                <div className="py-8 text-center">
-                                                    <p className="text-muted-foreground">You have no past appointments.</p>
-                                                </div>
-                                            )}
                                         </div> */}
                                     </div>
                                 </div>
@@ -235,9 +154,8 @@ export const UserDashboard = () => {
                         </div>
                     </div>
                 </div>
-            </main>
-            <Footer />
+            </section>
+        </>
 
-        </div>
     )
 }

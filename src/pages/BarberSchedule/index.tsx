@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../providers/Authprovider"
 import { Link, useParams } from "react-router-dom"
 import type { IReturnBarber } from "../../interfaces/interfaces"
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import logo from "../../utils/logo.png"
 
 export const BarberSchedule = () => {
@@ -38,7 +36,7 @@ export const BarberSchedule = () => {
 
     const noTimeAvailable = () => {
         return (
-            <div className="w-full m-auto">
+            <section className="w-full m-auto ">
                 <div className="flex flex-col items-center justify-center py-4">
                     <figure>
                         <img src={logo} alt="Logo" width={300} color="#ffffff" />
@@ -51,13 +49,12 @@ export const BarberSchedule = () => {
                     <p className="text-3xl font-bold">Que tal escolher outro barbeiro?</p>
                     <Link to="/" className="btn">Clique aqui e escolha outro barbeiro</Link>
                 </div>
-            </div>
+            </section>
         )
     }
 
     return (
         <>
-            <Header />
             <main className="flex-1 py-10">
 
                 <div className="container m-auto">
@@ -128,9 +125,6 @@ export const BarberSchedule = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
-
-
         </>
     )
 }

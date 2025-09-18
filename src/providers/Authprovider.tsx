@@ -14,6 +14,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
     const [allBarbers, setAllBarbers] = useState<IReturnBarber[] | null>(null)
     const [barber, setBarber] = useState<IReturnBarber[] | null>([])
     const [modal, setModal] = useState<boolean>(false)
+    const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const getAllBarbers = async (): Promise<IReturnBarber[] | void> => {
@@ -30,12 +31,17 @@ export const UserProvider = ({ children }: ProviderProps) => {
     }
 
     const getOneBarberSchedule = async (id: number): Promise<IReturnBarber | undefined> => {
-        const barberToken = localStorage.getItem("@Token")
-        try {
-            const { data } = await api.get(`/users/schedule/client/${id}`, { headers: { Authorization: `Bearer ${barberToken}` } })
-            return data
-        } catch (error) {
-            console.log(error)
+        const token = localStorage.getItem("@Token")
+        if(token){
+
+            try {
+                const { data } = await api.get(`/users/schedule/client/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+                return data
+            } catch (error) {
+                console.log(error)
+            }
+        }else{
+            toast.error("Token nao encontrado")
         }
     }
     const getBarberById = async (id: number): Promise<IReturnBarber | undefined> => {
@@ -46,6 +52,10 @@ export const UserProvider = ({ children }: ProviderProps) => {
             console.log(error)
         }
     }
+
+    // const getAllScheduleTimesByClient = async (barberId: number) => {
+        
+    // }
 
     const login = async (payload: ILoginData) => {
         try {
@@ -73,20 +83,21 @@ export const UserProvider = ({ children }: ProviderProps) => {
         setTimeout(() => {
             localStorage.removeItem("@Token")
             localStorage.removeItem("@UserInfo")
-            navigate("/")
             setUser(null)
-            toast.success("Logout efetuado com sucesso")
+            navigate("/")
         }, 500)
     }
 
     useEffect(() => {
+        // setToken(localStorage.getItem("@Token") || "")
+        
+        const token = localStorage.getItem("@Token")
+        const user = localStorage.getItem("@UserInfo")
         const loadUser = async () => {
-            const token = localStorage.getItem("@Token")
-            const user = localStorage.getItem("@UserInfo")
-
             try {
                 if (token && user) {
-                    const { data } = await api.get(`/autologin`)
+                    const { data } = await api.get(`/login/autologin`, { headers: { Authorization: `Bearer ${token}` } })
+                    console.log("sucesso")
                     setUser(data)
                 }
             } catch (error) {
@@ -97,8 +108,12 @@ export const UserProvider = ({ children }: ProviderProps) => {
         loadUser()
     }, [])
 
+    const openMenu = () => {
+        setMenu(!menu)
+    }
+
     return (
-        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal, getBarberById, getOneBarberSchedule }}>
+        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal, getBarberById, getOneBarberSchedule, openMenu, menu }}>
             {children}
         </UserContext.Provider>
     )

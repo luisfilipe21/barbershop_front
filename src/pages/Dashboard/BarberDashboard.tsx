@@ -29,6 +29,7 @@ export const BarberDashboard = () => {
         return () => { clearInterval(refreshSchedule) }
 
     }, [user!.id])
+
     const getTime = (appointment: string) => {
         const hours = new Date(appointment).getHours().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
         const minutes = new Date(appointment).getMinutes().toLocaleString("pt-BR", { minimumIntegerDigits: 2 })
@@ -46,110 +47,108 @@ export const BarberDashboard = () => {
     return (
         <>
 
-            <div className="flex min-h-screen flex-col m-auto">
-                <ScheduleModal />
-                <ToastContainer />
-                <Header />
+            <ScheduleModal />
+            <ToastContainer />
 
-                <main className="flex-1 py-10 m-auto">
-                    <div className="container">
+            <section className="flex min-h-screen flex-col m-auto">
+                <div className="">
 
-                        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                                <h1 className="text-4xl font-bold">Agenda</h1>
-                                <p className="text-muted-foreground">Controle seus agendamentos</p>
-                            </div>
-
-                            <button className="mt-4 sm:mt-0 btn" onClick={openModal}>Gerenciar horários</button>
-
+                    <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <h1 className="text-4xl font-bold">Agenda</h1>
+                            <p className="text-muted-foreground">Controle seus agendamentos</p>
                         </div>
 
-                        <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
-                            <div className="space-y-8">
-                                <div>
-                                    <div>
-                                        <h1>Informações pessoais</h1>
-                                    </div>
-                                    <div>
-                                        <div className="flex items-center gap-4">
-                                            <div className="rounded-full bg-muted p-2">
-                                                {/* <User className="h-6 w-6" /> */}
-                                                {/* IMAGEM */}
-                                            </div>
-                                            <div>
-                                                <p className="font-medium">{user?.name}</p>
-                                                <p className="text-sm text-muted-foreground">{user?.email}</p>
-                                                <p className="text-sm text-muted-foreground">{user?.phone}</p>
-                                                <p className="text-sm text-muted-foreground">{user?.phone}Endereço</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="mt-4">
-                                        <button className="w-full btn">
-                                            Edit Profile
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <button className="mt-4 sm:mt-0 btn" onClick={openModal}>Gerenciar horários</button>
 
+                    </div>
 
+                    <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
+                        <div className="space-y-8">
                             <div>
                                 <div>
-                                    <div>
-                                        <h1 className="text-4xl font-bold">Meus Horários</h1>
+                                    <h1>Informações pessoais</h1>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-4">
+                                        <div className="rounded-full bg-muted p-2">
+                                            {/* <User className="h-6 w-6" /> */}
+                                            {/* IMAGEM */}
+                                        </div>
+                                        <div>
+                                            <p className="font-medium">{user?.name}</p>
+                                            <p className="text-sm text-muted-foreground">{user?.email}</p>
+                                            <p className="text-sm text-muted-foreground">{user?.phone}</p>
+                                            <p className="text-sm text-muted-foreground">{user?.phone}Endereço</p>
+                                        </div>
                                     </div>
+                                </div>
+                                <div className="mt-4">
+                                    <button className="w-full btn">
+                                        Edit Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <div>
-                                        <div >
-                                            <div className="mt-6">
-                                                {user!.Schedule.length > 0 ? (
-                                                    <div className="space-y-4 flex flex-wrap gap-4">
-                                                        {user!.Schedule.map((appointment, index) => (
-                                                            <div key={index} className="rounded-lg border p-4">
-                                                                <div className="flex items-start gap-4">
-                                                                    <div className="flex-1">
-                                                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                                                            <h3 className="font-medium">{appointment.clientName}</h3>
+
+                        <div>
+                            <div>
+                                <div>
+                                    <h1 className="text-4xl font-bold">Meus Horários</h1>
+                                </div>
+
+                                <div>
+                                    <div >
+                                        <div className="mt-6">
+                                            {user!.Schedule.length > 0 ? (
+                                                <div className="space-y-4 flex flex-wrap gap-4">
+                                                    {user!.Schedule.map((appointment, index) => (
+                                                        <div key={index} className="rounded-lg border p-4">
+                                                            <div className="flex items-start gap-4">
+                                                                <div className="flex-1">
+                                                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                                                                        <h3 className="font-medium">{appointment.clientName}</h3>
+                                                                    </div>
+                                                                    <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
+                                                                        <div className="flex items-center gap-1">
+                                                                            {/* <CalendarDays className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            {appointment.date ? <p>{fullDate(appointment.date)}</p> : null}
                                                                         </div>
-                                                                        <div className="mt-2 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
-                                                                            <div className="flex items-center gap-1">
-                                                                                {/* <CalendarDays className="h-4 w-4 text-muted-foreground" /> */}
-                                                                                {appointment.date ? <p>{fullDate(appointment.date)}</p> : null}
-                                                                            </div>
 
+                                                                        <div className="flex items-center gap-1">
+                                                                            <div>
+                                                                                {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
+                                                                                {appointment.startTime ? <p>{getTime(appointment.startTime)}</p> : null}
+                                                                            </div>
                                                                             <div className="flex items-center gap-1">
-                                                                                <div>
-                                                                                    {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
-                                                                                    {appointment.startTime ? <p>{getTime(appointment.startTime)}</p> : null}
-                                                                                </div>
-                                                                                <div className="flex items-center gap-1">
-                                                                                    {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
-                                                                                    {appointment.endTime ? <p>{getTime(appointment.endTime)}</p> : null}
-                                                                                </div>
+                                                                                {/* <Clock className="h-4 w-4 text-muted-foreground" /> */}
+                                                                                {appointment.endTime ? <p>{getTime(appointment.endTime)}</p> : null}
                                                                             </div>
-                                                                            <div className="flex items-center gap-1 sm:col-span-2">
-                                                                                {/* <MapPin className="h-4 w-4 text-muted-foreground" /> */}
-                                                                                <span>{appointment.isAvailable}Agenda aberta</span>
-                                                                            </div>
+                                                                        </div>
+                                                                        <div className="flex items-center gap-1 sm:col-span-2">
+                                                                            {/* <MapPin className="h-4 w-4 text-muted-foreground" /> */}
+                                                                            {/* <span>{appointment.isAvailable}Agenda aberta</span> */}
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <div className="py-8 text-center">
-                                                        <p className="text-muted-foreground">Sua agenda está livre.</p>
-                                                        <Link to="/barbers">
-                                                            <button className="mt-4">Abra seu horário de atendimento</button>
-                                                        </Link>
-                                                    </div>
-                                                )}
-                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div className="py-8 text-center">
+                                                    <p className="text-muted-foreground">Sua agenda está livre.</p>
+                                                    <Link to="/barbers">
+                                                        <button className="mt-4">Abra seu horário de atendimento</button>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </div>
 
 
 
-                                            {/* <div className="mt-6">
+                                        {/* <div className="mt-6">
                                                 {pastAppointments.length > 0 ? (
                                                     <div className="space-y-4">
                                                         {pastAppointments.map((appointment) => (
@@ -199,19 +198,17 @@ export const BarberDashboard = () => {
                                                 )}
                                             </div> */}
 
-                                            <div className="flex w-full justify-between">
-                                                <p>Próximos</p>
-                                                <p>Passados</p>
-                                            </div>
+                                        <div className="flex w-full justify-between">
+                                            <p>Próximos</p>
+                                            <p>Passados</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </main>
-                <Footer />
-            </div>
+                </div>
+            </section>
         </>
     )
 }

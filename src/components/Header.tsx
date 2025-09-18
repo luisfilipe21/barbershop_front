@@ -1,10 +1,13 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../providers/Authprovider"
-
+import { AiOutlineShop } from "react-icons/ai";
+import { IoIosCloseCircle } from "react-icons/io";
 export const Header = () => {
 
-    const { user, logout } = useContext(UserContext)
+    const { user, logout, openMenu, menu } = useContext(UserContext)
+
+
 
     const loggedUser = () => {
         return (
@@ -32,23 +35,39 @@ export const Header = () => {
         )
     }
     return (
-        <header className="border-b">
-            <div className="container flex h-16 items-center justify-between m-auto">
-                <div className="flex items-center gap-2 font-bold text-xl">
-                    <Link to="/"> <span className="text-primary">Precision</span> Cuts</Link>
+        <header className="w-full m-auto max-w-7xl">
+            <div className="container flex items-center justify-center max-sm:p-8 m-auto">
+                <div className="flex items-center justify-between w-full gap-2 py-4 font-bold text-xl">
+                    <Link to="/">
+                        <span className="text-primary">Precision</span> Cuts
+                    </Link>
+
+
+                    {user ? loggedUser() :
+                        <>
+                            <nav className="gap-4 max-sm:hidden">
+                                <ul className="flex items-center gap-4">
+                                    <li>
+                                        <Link to="/login" className="text-sm font-medium hover:underline cursor-pointer">
+                                            Login
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/register">
+                                            <button className="text-sm font-medium hover:underline cursor-pointer">Cadastro</button>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <div className="min-sm:hidden">
+                                <span className="cursor-pointer">
+                                    <AiOutlineShop onClick={openMenu} className="text-3xl absolute top-[-1rem] right-[-2rem]" />
+                                </span>
+                            </div>
+                        </>
+                    }
                 </div>
-
-                {user ? loggedUser() :
-                    <nav className="flex items-center gap-4">
-                        <Link to="/login" className="text-sm font-medium hover:underline btn">
-                            Login
-                        </Link>
-                        <Link to="/register">
-                            <button className="text-sm font-medium hover:underline btn-primary">Cadastro</button>
-                        </Link>
-                    </nav>
-                }
-
             </div>
         </header>
     )

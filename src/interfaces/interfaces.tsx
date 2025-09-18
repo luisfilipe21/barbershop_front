@@ -49,7 +49,7 @@ export interface ProviderProps {
 
 export interface UserProviders {
     token: string | undefined
-    setToken: (value: string) => void
+    setToken: React.Dispatch<React.SetStateAction<string>>
     user: IReturnBarber | null
     setUser: (value: IReturnBarber | null) => void
     allBarbers: IReturnBarber[] | null
@@ -63,5 +63,7 @@ export interface UserProviders {
     setModal: React.Dispatch<React.SetStateAction<boolean>>
     getBarberById: (id: number) => Promise<IReturnBarber | undefined>
     getOneBarberSchedule: (id: number) => Promise<IReturnBarber | undefined>
+    openMenu: () => void
+    menu: boolean
 }
 

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom"
-import { Footer } from "../../components/Footer"
-import { Header } from "../../components/Header"
 import { UserContext } from "../../providers/Authprovider"
 import { useContext } from "react"
 
@@ -13,21 +11,18 @@ export const Barber = () => {
 
     return (
         <>
-            <div className="flex min-h-screen flex-col">
-                <Header />
+            <section className="flex min-h-screen flex-col">
+                <div className="container">
+                    <div className="mb-8 flex items-center">
+                        <Link to="/">
+                            <button className="gap-1 btn-primary">
+                                {/* <ChevronLeft className="h-4 w-4" /> */}
+                                Voltar
+                            </button>
+                        </Link>
+                    </div>
+                    {barber?.map((barber) => (
 
-                <main className="flex-1 py-10 m-auto">
-                    <div className="container">
-                        <div className="mb-8 flex items-center">
-                            <Link to="/">
-                                <button className="gap-1 btn-primary">
-                                    {/* <ChevronLeft className="h-4 w-4" /> */}
-                                    Voltar
-                                </button>
-                            </Link>
-                        </div>
-                        {barber?.map((barber) => (
-                            
                         <div key={barber.id} className="grid gap-8 md:grid-cols-[1fr_2fr]">
                             <div>
                                 <div>
@@ -177,11 +172,10 @@ export const Barber = () => {
                                 </div>
                             </div>
                         </div>
-))}
-                    </div>
-                </main>
-                <Footer />
-            </div>
+                    ))}
+                </div>
+            </section>
+
         </>
     )
 }
