@@ -17,27 +17,26 @@ export const Home = () => {
     return (
         <>
             <ToastContainer />
-            <section className="flex min-h-screen flex-col ">
                 {!user ?
                     <section className="py-20 md:py-32">
-                        <div className="container flex flex-col items-center text-center">
-                            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                        <div className="container flex flex-col items-center text-center gap-2 max-sm:px-2">
+                            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
                                 Agende seu horário <span className="text-primary">agora</span>
                             </h1>
-                            <p className="mt-6 max-w-[600px] text-muted-foreground md:text-xl">
-                                Garanta seu horário com seu barbeiro de maneira rápida e prática.
+                            <p className="mt-6 max-w-[600px] md:text-xl">
+                                Garanta já seu horário com seu barbeiro de maneira rápida e prática.
                             </p>
                             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                                <Link to="/register">
+                                <Link to="/barber">
+                                    <button className="btn btn-accent" >
+                                        Barbeiros 
+                                    </button>
+                                </Link>
+                                {/* <Link to="/register">
                                     <button className="btn btn-primary gap-2">
                                         Cadastrar
                                     </button>
-                                </Link>
-                                <Link to="/barber">
-                                    <button className="btn" >
-                                        Barbeiros (setinha direita)
-                                    </button>
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </section>
@@ -95,9 +94,6 @@ export const Home = () => {
                         <BarbersComponent />
                     </div>
                 </section>
-
-            </section>
-
         </>
     )
 }

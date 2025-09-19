@@ -1,9 +1,11 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: nord --default, dark --prefersdark;
+}
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 207,207,207, 0,34;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;

@@ -2,7 +2,6 @@ import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../providers/Authprovider"
 import { AiOutlineShop } from "react-icons/ai";
-import { IoIosCloseCircle } from "react-icons/io";
 export const Header = () => {
 
     const { user, logout, openMenu, menu } = useContext(UserContext)
@@ -62,7 +61,7 @@ export const Header = () => {
 
                             <div className="sm:hidden">
                                 <span className="cursor-pointer">
-                                    <AiOutlineShop onClick={openMenu} className="text-3xl" />
+                                    <AiOutlineShop onClick={openMenu} className="text-3xl text-primary" />
                                 </span>
                             </div>
                         </>
