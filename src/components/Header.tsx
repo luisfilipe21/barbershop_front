@@ -34,9 +34,9 @@ export const Header = () => {
         )
     }
     return (
-        <header className="w-full m-auto max-w-7xl">
-            <div className="container flex items-center justify-center max-sm:p-8 m-auto">
-                <div className="flex items-center justify-between w-full gap-2 py-4 font-bold text-xl">
+        <header className="w-full m-auto max-w-7xl bg-secondary/35">
+            <div className="container flex items-center justify-center max-sm:p-4 m-auto">
+                <div className="flex items-center justify-between w-full gap-2 py-2 font-bold text-xl">
                     <Link to="/">
                         <span className="text-primary">Precision</span> Cuts
                     </Link>

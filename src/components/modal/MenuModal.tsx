@@ -11,26 +11,26 @@ export const MenuModal = () => {
 
 
     return (
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} 
-className = "absolute w-full h-full top-0 right-0 flex" >
-    <div className="flex items-center justify-center w-full bg-base-300/15 foreground">
-        <div className="relative">
-            <span className="absolute top-1 right-1">
-                <IoIosCloseCircle onClick={openMenu} className="w-6 h-6 text-neutral" />
-            </span>
-            <nav className="flex items-center text-center w-36 h-28 ">
-                <ul className="flex flex-col items-center justify-around bg-accent w-full h-full rounded-2xl">
-                    <li><Link to="/login" className="text-sm  font-medium hover:underline cursor-pointer" onClick={openMenu}>
-                        Login
-                    </Link></li>
-                    <li> <Link to="/register">
-                        <button className="text-sm  font-medium hover:underline cursor-pointer" onClick={openMenu}>Cadastro</button>
-                    </Link></li>
-                </ul>
-            </nav>
-        </div>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
+            className="absolute w-full h-full top-0 right-0 flex" >
+            <div className="flex items-center justify-center w-full bg-base-300/55 foreground">
+                <div className="relative">
+                    <span className="absolute top-1 right-1">
+                        <IoIosCloseCircle onClick={openMenu} className="w-6 h-6 text-neutral" />
+                    </span>
+                    <nav className="flex items-center text-center w-36 h-28 ">
+                        <ul className="flex flex-col items-center justify-around bg-accent w-full h-full rounded-2xl">
+                            <li><Link to="/login" className="text-sm  font-medium hover:underline cursor-pointer" onClick={openMenu}>
+                                Login
+                            </Link></li>
+                            <li> <Link to="/register">
+                                <button className="text-sm  font-medium hover:underline cursor-pointer" onClick={openMenu}>Cadastro</button>
+                            </Link></li>
+                        </ul>
+                    </nav>
+                </div>
 
-    </div>
+            </div>
         </motion.div >
     )
 }

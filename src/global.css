@@ -5,6 +5,7 @@
 
 @layer base {
   :root {
+    font: normal normal 400 16px/1.5 "Inter", sans-serif;
     --background: 207,207,207, 0,34;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
