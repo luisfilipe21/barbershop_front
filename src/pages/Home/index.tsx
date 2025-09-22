@@ -7,6 +7,28 @@ import { ToastContainer } from "react-toastify"
 export const Home = () => {
     const { barber, getAllBarbers, user } = useContext(UserContext)
 
+    const howWeWork = [
+        {
+            id: 1,
+            title: "Crie sua conta",
+            description: "Precisamos te conhecer para poder melhor te atender"
+        },
+        {
+            id: 2,
+            title: "Conheça nossos barbeiros",
+            description: "Temos uma grande carta de barbearias e barbeiros disponíveis para cuidar do seu look."
+        },
+        {
+            id: 3,
+            title: "Selecione seu horário",
+            description: "Selecione o dia e o horário que melhor se encaixam na sua rotina"
+        }, {
+            id: 4,
+            title: "Hora de ficar bonitão",
+            description: "Agora é só comparecer no horário marcado e sair com o cabelo na régua"
+        }
+    ]
+
     useEffect(() => {
         if (barber?.length !== 0) {
             return
@@ -57,38 +79,28 @@ export const Home = () => {
 
             <section className="px-4 py-20 md:py-32">
                 {user === null ?
-                    <div className="">
-                        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Como funciona</h2>
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                            <div className="flex flex-col items-center text-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
-                                    1
-                                </div>
-                                <h3 className="text-xl font-bold">Escolha seu barbeiro</h3>
-                                <p className="mt-2 text-muted-foreground">
-                                    Escolha sua barbearia e barbeiro de preferência.
-                                </p>
-                            </div>
-                            <div className="flex flex-col items-center text-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
-                                    2
-                                </div>
-                                <h3 className="text-xl font-bold">Selecione o horário do atendimento</h3>
-                                <p className="mt-2 text-muted-foreground">
-                                    Veja a agenda dos barbeiros e escolha o melhor horário para você.
-                                </p>
-                            </div>
-                            <div className="flex flex-col items-center text-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
-                                    3
-                                </div>
-                                <h3 className="text-xl font-bold">Hora de ficar bonitão</h3>
-                                <p className="mt-2 text-muted-foreground">
-                                    Agora é só aparecer no horário marcado e dar aquele tapa no visual.
-                                </p>
-                            </div>
+                    <>
+                        <h2 className="text-5xl font-bold tracking-tight text-center mb-12">Como funcionamos</h2>
+
+                        <div className="min-sm:flex items-center ">
+                            {howWeWork.map((item) => {
+                                return (
+                                    <div key={item.id} className="flex flex-col justify-start gap-8 ">
+                                        <div className="flex flex-col items-center justify-start text-center py-2 ">
+                                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary my-4 text-xl font-bold">
+                                                {item.id}
+                                            </div>
+                                            <h3 className="text-xl font-bold">{item.title}</h3>
+                                            <p className="mt-2 text-lg ">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
-                    </div>
+
+                    </>
 
                     :
                     <div className="px-4 py-20 md:py-32">
@@ -102,7 +114,7 @@ export const Home = () => {
 
             <section className="bg-secondary/40">
                 <div className=" px-4 py-20 md:py-32 ">
-                    <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Barbeiros</h2>
+                    <h2 className="text-5xl font-bold tracking-tight text-center mb-12">Barbeiros</h2>
                     <BarbersComponent />
                 </div>
             </section>
