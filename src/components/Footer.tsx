@@ -1,13 +1,13 @@
 export const Footer = () => {
     return (
-        <footer className="border-t py-6 bg-primary">
-            <div className="container flex flex-col items-center justify-between gap-4 md:flex-row m-auto">
-                <p className="text-sm text-muted-foreground">© 2025 Precision Cuts. Criado por Luis Filipe.</p>
-                <nav className="flex gap-4">
-                    <a href="#" className="text-sm text-muted-foreground hover:underline">
+        <footer className="w-full m-auto max-w-7xl py-6 bg-primary">
+            <div className="flex flex-col items-center justify-between min-sm:px-8 gap-4 md:flex-row m-auto">
+                <p className="text-sm font-bold">© 2025 Precision Cuts. Criado por Luis Filipe.</p>
+                <nav className="flex gap-4 font-bold">
+                    <a href="#" className="text-sm hover:underline">
                         Contact Us
                     </a>
-                    <a href="/registerBarber" className="text-sm text-muted-foreground hover:underline">
+                    <a href="/registerBarber" className="text-sm hover:underline">
                         Seja um Barbeiro Parceiro
                     </a>
                 </nav>

@@ -39,9 +39,9 @@ export const Home = () => {
     return (
         <>
             <ToastContainer />
-            <section className="px-4 py-20 md:py-32">
+            <section className="px-4 py-20 max-w-7xl m-auto">
                 {!user ?
-                    <div className="container flex flex-col items-center text-center gap-2 max-sm:px-2">
+                    <div className="container flex flex-col items-center text-center gap-6 max-sm:px-2">
                         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
                             Agende seu horário <span className="text-accent">agora</span>
                         </h1>
@@ -77,17 +77,17 @@ export const Home = () => {
                 }
             </section>
 
-            <section className="px-4 py-20 md:py-32">
+            <section className="px-4 py-20 max-w-7xl m-auto">
                 {user === null ?
                     <>
-                        <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-center mb-12">Como funcionamos</h2>
+                        <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-center mb-18">Como funcionamos</h2>
 
                         <div className="min-sm:flex items-center flex-wrap justify-center sm:gap-6">
                             {howWeWork.map((item) => {
                                 return (
                                     <div key={item.id} className="flex flex-col justify-start gap-8 h-full">
                                         <div className="flex flex-col items-center justify-start text-center sm:w-2xs sm:h-full">
-                                            <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-primary my-4 text-2xl font-bold ">
+                                            <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-accent my-4 text-2xl font-bold ">
                                                 {item.id}
                                             </div>
                                             <div>
@@ -105,7 +105,7 @@ export const Home = () => {
                     </>
 
                     :
-                    <div className="px-4 py-16 md:py-32">
+                    <div className="px-4 py-16 ">
                         <div className="w-full">
 
                             <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-center mb-12">Agende agora seu horário</h2>
@@ -114,12 +114,10 @@ export const Home = () => {
                 }
             </section>
 
-            <section className="bg-secondary/40">
-                <div className=" px-4 py-16 sm:py-20 ">
-                    <h2 className="text-5xl sm:text-6xl font-bold  text-center mb-12">Barbeiros</h2>
-                    <div className="max-w-3xl">
-                        <BarbersComponent />
-                    </div>
+            <section className="bg-secondary/40 w-full max-w-7xl m-auto">
+                <div className=" px-4 py-16 sm:pb-28 ">
+                    <h2 className="text-5xl sm:text-6xl font-bold text-center mb-18">Barbeiros</h2>
+                    <BarbersComponent />
                 </div>
             </section>
         </>

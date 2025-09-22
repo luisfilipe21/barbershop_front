@@ -16,7 +16,7 @@ function App() {
         {menu ? <MenuModal /> : null}
       </AnimatePresence>
 
-      <main className="flex flex-col m-auto max-w-5xl">
+      <main className="flex flex-col m-auto max-w-7xl">
         <RoutesMain />
       </main>
       <Footer />

@@ -14,7 +14,7 @@ export const BarbersComponent = () => {
 
     return (
 
-        <div className="flex max-sm:flex-col justify-around flex-wrap gap-6">
+        <div className="flex max-sm:flex-col justify-around flex-wrap gap-10">
             {barber?.map((barber, index) => (
                 <div
                     key={index}

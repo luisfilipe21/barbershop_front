@@ -4,7 +4,7 @@ import { UserContext } from "../providers/Authprovider"
 import { AiOutlineShop } from "react-icons/ai";
 export const Header = () => {
 
-    const { user, logout, openMenu, menu } = useContext(UserContext)
+    const { user, logout, openMenu } = useContext(UserContext)
 
 
 
@@ -35,7 +35,7 @@ export const Header = () => {
     }
     return (
         <header className="w-full m-auto max-w-7xl bg-secondary/35">
-            <div className="container flex items-center justify-center max-sm:p-4 m-auto min-sm:px-8">
+            <div className="container flex items-center justify-center min-sm:py-4 m-auto min-sm:px-8">
                 <div className="flex items-center justify-between w-full gap-2 py-2 font-bold text-xl">
                     <Link to="/">
                         <span className="text-primary">Precision</span> Cuts
@@ -47,13 +47,13 @@ export const Header = () => {
                             <nav className="gap-4 max-sm:hidden">
                                 <ul className="flex items-center gap-4">
                                     <li>
-                                        <Link to="/login" className="text-sm font-medium hover:underline cursor-pointer">
+                                        <Link to="/login" className="text-sm hover:underline cursor-pointer sm:text-lg font-bold btn btn-accent">
                                             Login
                                         </Link>
                                     </li>
                                     <li>
                                         <Link to="/register">
-                                            <button className="text-sm font-medium hover:underline cursor-pointer">Cadastro</button>
+                                            <button className="text-sm hover:underline cursor-pointer sm:text-lg font-bold">Cadastro</button>
                                         </Link>
                                     </li>
                                 </ul>
