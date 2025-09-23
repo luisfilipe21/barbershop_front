@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
-        <footer className="w-full m-auto max-w-7xl py-6 bg-primary">
-            <div className="flex flex-col items-center justify-between min-sm:px-8 gap-4 md:flex-row m-auto">
+        <footer className="w-full m-auto py-6 bg-primary">
+            <div className="max-w-7xl flex flex-col items-center justify-between min-sm:px-8 gap-4 md:flex-row m-auto">
                 <p className="text-sm font-bold">© 2025 Precision Cuts. Criado por Luis Filipe.</p>
                 <nav className="flex gap-4 font-bold">
                     <a href="#" className="text-sm hover:underline">
