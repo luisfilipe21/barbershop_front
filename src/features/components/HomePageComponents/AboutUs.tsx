@@ -1,15 +1,15 @@
 import { useContext } from "react"
 import { UserContext } from "../../../providers/Authprovider"
 import { Link } from "react-router-dom"
+import { SingleBarberComponent } from "../../../components/barber"
 
 export const AboutUs = () => {
 
 
     const { user } = useContext(UserContext)
-
     return (
 
-        <section className="px-4 py-20 max-w-7xl m-auto">
+        <section className="flex flex-col justify-center px-4 py-8 min-h-screen max-w-7xl m-auto bg-primary">
             {!user ?
                 <div className="flex flex-col items-center text-center  gap-6 max-sm:px-2">
                     <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
@@ -34,15 +34,32 @@ export const AboutUs = () => {
                 </div>
                 :
                 <div className="container flex flex-col items-center text-center gap-2 max-sm:px-2">
-                    <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-                        Seu próximo atendimento é com:
-                    </h1>
-                    <p className="mt-6 max-w-[600px] md:text-xl">
-                        Puxar aqui os dados do próximo atendimento.
-                    </p>
-                    <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                    {user.role === "CLIENT" ?
+                        <>
+                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+                                    Sua próxima seção está marcada com o:
+                                </h1>
+                                <SingleBarberComponent/>
+                                {/* <p className="mt-6 max-w-[600px] md:text-xl">
+                                    Puxar aqui os dados do próximo atendimento.
+                                </p> */}
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+                                    Seu próximo atendimento é com:
+                                </h1>
+                                <p className="mt-6 max-w-[600px] md:text-xl">
+                                    Puxar aqui os dados do próximo atendimento.
+                                </p>
+                            </div>
+                        </>
+                    }
 
-                    </div>
+
                 </div>
             }
         </section>

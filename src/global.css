@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: nord --default, dark --prefersdark;
+  themes: coffee --default, dark --prefersdark;
 }
 
 @layer base {
@@ -30,7 +30,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
+    --background-image: url("../assets/imgFundo.jpg");
   }
   .dark {
     --background: 224 71.4% 4.1%;
@@ -58,4 +59,15 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
   }
+}
+
+
+@layer utilities {
+  .bg-custom {
+    background-image: url('/src/assets/imgFundo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
 }

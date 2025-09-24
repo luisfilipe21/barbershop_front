@@ -18,7 +18,7 @@ export const BarbersComponent = () => {
             {barber?.map((barber, index) => (
                 <div
                     key={index}
-                    className="rounded-lg border bg-primary/35 shadow-sm hover:shadow-2xl w-2xs"
+                    className="card bg-base-100 w-48 min-sm:w-96 shadow-sm hover:shadow-2xl"
                 >
                     <figure className="aspect-square overflow-hidden">
                         <img
@@ -27,14 +27,16 @@ export const BarbersComponent = () => {
                             className="h-full w-full object-cover rounded-t-lg"
                         />
                     </figure>
-                    <div className="p-4">
-                        <h3 className="font-bold text-xl">{barber.name}</h3>
+                    <div className="card-body">
+                        <h3 className="card-title">{barber.name}</h3>
                         <p className="text-base">
                             ({barber.phone.slice(0, 2)}) {barber.phone.slice(2, 7)}-{barber.phone.slice(7, 11)}
                         </p>
-                        <button className="btn btn-secondary mt-4 w-full" onClick={() => handleBarber(barber)}>
-                            Conheça o Profissional
-                        </button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary" onClick={() => handleBarber(barber)}>
+                                Conheça o Profissional
+                            </button>
+                        </div>
 
                     </div>
                 </div>

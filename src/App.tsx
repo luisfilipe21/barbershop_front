@@ -10,17 +10,16 @@ function App() {
 
   const { menu } = useContext(UserContext)
   return (
-    <>
+    <div className="relative">
       <Header />
       <AnimatePresence>
         {menu ? <MenuModal /> : null}
       </AnimatePresence>
 
-      <main className="flex flex-col m-auto max-w-7xl">
-        <RoutesMain />
-      </main>
+      <RoutesMain />
+
       <Footer />
-    </>
+    </div>
   )
 }
 
