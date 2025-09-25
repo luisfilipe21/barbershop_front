@@ -28,22 +28,22 @@ export const HowWeWork = () => {
 
 
     return (
-        <section className="px-4 py-20 max-w-7xl m-auto">
+        <section className="px-4 pb-20 max-w-7xl m-auto">
             {user === null ?
                 <>
-                    <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-center mb-18">Como funcionamos</h2>
+                    <h2 className="text-4xl font-bold text-center tracking-tight sm:text-6xl md:text-7xl text-shadow-2xs mb-12">Como funcionamos</h2>
 
                     <div className="min-sm:flex items-center flex-wrap justify-center sm:gap-6">
                         {howWeWork.map((item) => {
                             return (
-                                <div key={item.id} className="flex flex-col justify-start gap-8 h-full">
-                                    <div className="flex flex-col items-center justify-start text-center sm:w-2xs sm:h-full">
-                                        <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-accent my-4 text-2xl font-bold ">
+                                <div key={item.id} className="flex flex-col justify-start gap-12 h-full">
+                                    <div className="flex flex-col items-center justify-start text-center sm:w-2xs sm:h-full gap-4">
+                                        <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-base-200 my-4 text-2xl font-bold text-primary">
                                             {item.id}
                                         </div>
-                                        <div>
-                                            <h3 className="text-xl sm:text-2xl font-bold">{item.title}</h3>
-                                            <p className="mt-2 text-lg sm:text-xl">
+                                        <div className="">
+                                            <h3 className="text-primary text-xl sm:text-2xl font-bold">{item.title}</h3>
+                                            <p className="text-secondary/70 mt-2 text-lg sm:text-xl">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -59,7 +59,7 @@ export const HowWeWork = () => {
                 <div className="px-4 py-16 ">
                     <div className="w-full">
 
-                        <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-center mb-12">Agende agora seu horário</h2>
+                        <h2 className="text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl text-shadow-2xs mb-12">Agende agora seu horário</h2>
                     </div>
                 </div>
             }

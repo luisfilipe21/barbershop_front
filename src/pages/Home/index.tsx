@@ -17,7 +17,7 @@ export const Home = () => {
     }, [])
 
     return (
-        <main className="flex flex-col justify-center m-auto">
+        <main className="flex flex-col justify-center m-auto bg-secondary-content">
             <ToastContainer />
             <Presentation />
             <AboutUs />

@@ -14,11 +14,11 @@ export const BarbersComponent = () => {
 
     return (
 
-        <div className="flex max-sm:flex-col justify-around flex-wrap gap-10">
+        <div className="flex max-sm:flex-col items-center justify-around flex-wrap gap-10">
             {barber?.map((barber, index) => (
                 <div
                     key={index}
-                    className="card bg-base-100 w-48 min-sm:w-96 shadow-sm hover:shadow-2xl"
+                    className="card card-md max-sm:card-xs bg-base-100 max-sm:max-w-3xs max-sm:max-h-80 min-sm:w-3xs shadow-sm hover:shadow-2xl"
                 >
                     <figure className="aspect-square overflow-hidden">
                         <img
@@ -27,13 +27,13 @@ export const BarbersComponent = () => {
                             className="h-full w-full object-cover rounded-t-lg"
                         />
                     </figure>
-                    <div className="card-body">
-                        <h3 className="card-title">{barber.name}</h3>
-                        <p className="text-base">
+                    <div className="card-body gap-2">
+                        <h3 className="card-title text-2xl">{barber.name}</h3>
+                        <p className="max-sm:text-base text-xl font-bold">
                             ({barber.phone.slice(0, 2)}) {barber.phone.slice(2, 7)}-{barber.phone.slice(7, 11)}
                         </p>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary" onClick={() => handleBarber(barber)}>
+                            <button className="btn btn-primary max-sm:btn-sm btn-md" onClick={() => handleBarber(barber)}>
                                 Conheça o Profissional
                             </button>
                         </div>

@@ -84,7 +84,7 @@ export const Header = () => {
 
                             <div className="sm:hidden">
                                 <span className="cursor-pointer">
-                                    <AiOutlineShop onClick={openMenu} className="text-3xl text-primary" />
+                                    <AiOutlineShop onClick={openMenu} className="text-3xl text-primary border rounded-md p-0.5" />
                                 </span>
                             </div>
                         </>
