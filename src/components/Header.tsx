@@ -55,7 +55,7 @@ export const Header = () => {
         )
     }
     return (
-        <header className={`w-full m-auto relative z-50`}>
+        <header className="w-full max-w-7xl m-auto z-50">
             <motion.div animate={controls} className="w-full fixed max-w-7xl flex items-center justify-center m-auto px-4 min-sm:py-4 min-sm:px-8 top-0 z-50">
                 <div className="flex items-center justify-between w-full gap-2 py-1 font-thin text-2xl">
                     <Link to="/" >

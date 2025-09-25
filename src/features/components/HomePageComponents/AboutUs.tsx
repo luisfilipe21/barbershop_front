@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "../../../providers/Authprovider"
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { SingleBarberComponent } from "../../../components/barber"
 
 export const AboutUs = () => {
@@ -9,9 +9,9 @@ export const AboutUs = () => {
     const { user } = useContext(UserContext)
     return (
 
-        <section className="flex flex-col justify-center px-4 py-20 max-w-7xl m-auto max-sm:mt-[680px] mt-[750px] h-full">
+        <section className="flex flex-col justify-center items-center px-4 py-20 max-w-7xl m-auto max-sm:mt-[680px] mt-[750px]">
             {!user ?
-                <div className="flex flex-col items-center justify-center gap-6 max-sm:px-2">
+                <div className="w-full flex flex-col items-center justify-center gap-6 max-sm:px-2">
                     <h1 className="text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl text-shadow-2xs">
                         Sobre a OnBarber
                     </h1>
@@ -19,7 +19,7 @@ export const AboutUs = () => {
                         O <b>OnBarber</b> site foi criado para facilitar sua vida. Garantindo seu horário de atendimento com o barbeiro de sua preferência. Visualize os horários disponíveis em tempo real e reserve seu atendimento em poucos cliques. Sem ligações, sem complicação.
                         Basta selecionar o profissional, escolher o dia e o horário que melhor se encaixam na sua rotina e pronto — sua vaga estará garantida.
                     </p>
-                    {/* <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+                    <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
                         <Link to="/barber">
                             <button className="btn btn-accent" >
                                 Conheça nossos Barbeiros
@@ -30,7 +30,7 @@ export const AboutUs = () => {
                                 Cadastrar
                             </button>
                         </Link>
-                    </div> */}
+                    </div>
                 </div>
                 :
                 <div className="container flex flex-col items-center text-center gap-2 max-sm:px-2">
