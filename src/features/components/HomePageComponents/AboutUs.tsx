@@ -9,9 +9,9 @@ export const AboutUs = () => {
     const { user } = useContext(UserContext)
     return (
 
-        <section className="flex flex-col justify-center px-4 py-8 min-h-screen max-w-7xl m-auto bg-primary">
+        <section className="flex flex-col justify-center px-4 py-8 max-w-7xl m-auto max-sm:mt-[550px] mt-[750px] h-full">
             {!user ?
-                <div className="flex flex-col items-center text-center  gap-6 max-sm:px-2">
+                <div className="flex flex-col items-center text-center gap-6 max-sm:px-2">
                     <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
                         Agende seu horário <span className="text-accent">agora</span>
                     </h1>

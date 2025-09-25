@@ -1,6 +1,6 @@
 export const Footer = () => {
     return (
-        <footer className="w-full m-auto py-6 bg-primary">
+        <footer className="w-full m-auto py-6">
             <div className="max-w-7xl flex flex-col items-center justify-between min-sm:px-8 gap-4 md:flex-row m-auto">
                 <p className="text-sm font-bold">© 2025 Precision Cuts. Criado por Luis Filipe.</p>
                 <nav className="flex gap-4 font-bold">
