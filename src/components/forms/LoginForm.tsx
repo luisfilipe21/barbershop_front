@@ -9,35 +9,28 @@ export const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const { login } = useContext(UserContext)
-    
+
     return (
         <form onSubmit={handleSubmit(login)}>
-            <div className="py-4">
-                <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
-                <p>Insira e-mial e senha para continuar</p>
+            
+            <div className="flex flex-col justify-center">
+                <Inputs
+                    {...register("email")}
+                    type="email"
+                    placeholder="E-mail"
+                    id="email"
+                />
+
+                <Inputs
+                    {...register("password")}
+                    type="password"
+                    placeholder="Senha"
+                    id="password"
+                />
+
             </div>
-            <div className="space-y-4">
-                <div className="space-y-2">
-                    <Inputs
-                        {...register("email")}
-                        type="email"
-                        placeholder="nome@examplo.com"
-                        id="email"
-                        label="E-mail" />
-                </div>
-                <div className="space-y-2">
-                    
-                    <Inputs
-                        {...register("password")}
-                        type="password"
-                        placeholder="**********"
-                        id="password"
-                        label="Senha"
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col mt-2">
-                <button className="w-full btn"  type="submit">
+            <div className="flex flex-col mt-4 px-3">
+                <button className="w-full btn btn-primary" type="submit">
                     {/* {isLoading ? "Signing in..." : "Sign In"} */}
                     Entrar
                 </button>

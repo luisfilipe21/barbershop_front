@@ -23,55 +23,45 @@ export const RegisterBarberForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(submit)}>
-                <div className="mb-4">
-                    <h1 className="text-2xl font-semibold tracking-tight">Cadastro</h1>
-                    <p></p>
-                </div>
-                <div className="space-y-4">
+                <div className="">
                     <Inputs {...register("name")}
                         id="nome"
-                        label="Nome"
                         placeholder="Nome"
                         type="text"
-
                     />
                     <Inputs {...register("email")}
                         id="email"
-                        label="E-mail"
-                        placeholder="name@example.com"
+                        placeholder="E-mail"
                         type="email"
-
                     />
                     <Inputs {...register("phone")}
-                        id="phone"
-                        label="Telefone"
+                        id="phone"                        
                         placeholder="(99) 99999-9999"
                         type="tel"
-
                     />
                     <Inputs {...register("password")}
-                        id="password"
-                        label="Senha"
-                        placeholder="**********"
+                        id="password"                        
+                        placeholder="Senha"
                         type="password"
                     />
                     <Inputs
                     {...register("role")}
                         id="role"
-                        label="BARBER"
                         placeholder="Barbeiro"
                         type="radio"
                         value="BARBER"
+                        label="Barbeiro"
                     />
                 </div>
 
-                <div className="flex flex-col py-2">
-                    <button className="w-full btn" type="submit">
+                <div className="flex flex-col p-3 mt-4">
+                    <button className="w-full btn btn-primary" type="submit">
                         {/* disabled={isLoading} */}
                         Criar conta
                         {/* {isLoading ? "Creating account..." : "Create Account"} */}
                     </button>
-                    <p className="mt-4 text-center text-sm text-muted-foreground">
+                    <p className="mt-2 text-center text-sm text-muted-foreground">
+                        Já possui conta? <span>      </span>
                         <Link to="/login" className="text-primary hover:underline">
                             Entrar
                         </Link>

@@ -31,19 +31,21 @@ export const HowWeWork = () => {
         <section className="px-4 pb-20 max-w-7xl m-auto">
             {user === null ?
                 <>
-                    <h2 className="text-4xl font-bold text-center tracking-tight sm:text-6xl md:text-7xl text-shadow-2xs mb-12">Como funcionamos</h2>
+                    <h2 className="text-4xl font-bold text-center tracking-tight sm:text-5xl md:text-6xl text-shadow-2xs mb-12">
+                        Como funcionamos
+                    </h2>
 
-                    <div className="min-sm:flex items-center flex-wrap justify-center sm:gap-6">
+                    <div className="min-sm:flex items-center flex-wrap justify-center lg:px-12 xl:px-0 sm:gap-6">
                         {howWeWork.map((item) => {
                             return (
-                                <div key={item.id} className="flex flex-col justify-start gap-12 h-full">
-                                    <div className="flex flex-col items-center justify-start text-center sm:w-2xs sm:h-full gap-4">
-                                        <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-base-200 my-4 text-2xl font-bold text-primary">
+                                <div key={item.id} className="flex flex-col border border-base-200 rounded-2xl m-2 max-sm:m-8 pb-2 px-4">
+                                    <div className="flex flex-col items-center justify-between text-center sm:w-2xs sm:h-full gap-4">
+                                        <div className="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-base-200 mt-4 text-2xl font-bold text-primary">
                                             {item.id}
                                         </div>
-                                        <div className="">
+                                        <div className="flex flex-col">
                                             <h3 className="text-primary text-xl sm:text-2xl font-bold">{item.title}</h3>
-                                            <p className="text-secondary/70 mt-2 text-lg sm:text-xl">
+                                            <p className="text-secondary/70 my-2 text-base sm:text-xl">
                                                 {item.description}
                                             </p>
                                         </div>
