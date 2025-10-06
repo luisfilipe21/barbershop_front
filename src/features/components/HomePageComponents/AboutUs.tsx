@@ -21,7 +21,7 @@ export const AboutUs = () => {
                     </p>
                     <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
                         <Link to="/barber">
-                            <button className="btn btn-accent" >
+                            <button className="btn btn-active" >
                                 Conheça nossos Barbeiros
                             </button>
                         </Link>

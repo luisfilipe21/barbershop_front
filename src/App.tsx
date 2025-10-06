@@ -15,7 +15,7 @@ function App() {
       <AnimatePresence>
         {menu ? <MenuModal /> : null}
       </AnimatePresence>
-
+      
       <RoutesMain />
 
       <Footer />
