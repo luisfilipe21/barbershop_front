@@ -8,7 +8,7 @@ import { BarberInfoComponent } from "../../features/components/BarberHomePageCom
 import { BarberAgendaComponent } from "../../features/components/BarberHomePageComponents.tsx/BarberAgendaComponent"
 export const BarberDashboard = () => {
 
-    const { user, setModal, setUser } = useContext(UserContext)
+    const { user, setModal, setUser,calRef } = useContext(UserContext)
 
     const openModal = () => {
         setModal(true)
@@ -44,15 +44,19 @@ export const BarberDashboard = () => {
         return date
     }
 
+    const click = () => {
+        console.log(calRef.current.value)
+    }
+
     return (
         <>
-
             <ScheduleModal />
             <ToastContainer />
-            <section className="flex flex-col m-auto mt-10 px-6">
+            <section className="flex flex-col m-auto mt-20 px-6">
                 <div className="">
                     <BarberInfoComponent />
                     <BarberAgendaComponent />
+        <button onClick={click}>scdddddddddddddddd</button>
 
                     <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
                         <div>

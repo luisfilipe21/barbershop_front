@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import type { IBarber, ILoginData, IReturnBarber, ProviderProps, UserProviders } from "../interfaces/interfaces";
 import { api } from "../service/api";
 import { jwtDecode } from "jwt-decode"
@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 export const UserContext = createContext<UserProviders>({} as UserProviders)
 
 export const UserProvider = ({ children }: ProviderProps) => {
+
+    const calRef = useRef<any>(null);
     const [token, setToken] = useState<string>("")
     const [user, setUser] = useState<IReturnBarber | null>(null)
     const [allBarbers, setAllBarbers] = useState<IReturnBarber[] | null>(null)
@@ -109,7 +111,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
     }
 
     return (
-        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal, getBarberById, getOneBarberSchedule, openMenu, menu }}>
+        <UserContext.Provider value={{ token, setToken, user, setUser, login, logout, barber, setBarber, allBarbers, setAllBarbers, getAllBarbers, modal, setModal, getBarberById, getOneBarberSchedule, openMenu, menu, calRef}}>
             {children}
         </UserContext.Provider>
     )

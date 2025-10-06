@@ -65,5 +65,6 @@ export interface UserProviders {
     getOneBarberSchedule: (id: number) => Promise<IReturnBarber | undefined>
     openMenu: () => void
     menu: boolean
+    calRef:React.RefObject<any>
 }
 
